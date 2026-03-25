@@ -1,3 +1,4 @@
+import Link from "next/link";
 export function SummaryItem({
   name,
   link,
@@ -14,5 +15,5 @@ export function SummaryItem({
   // TODO: Implement the summary item
   // must show the number of posts in that category and the name
   // if if is selected it must show in different color/background
-  return <li>Item</li>;
+  return <Link href={link}><li className={isSelected ? "bg-red-100" : "bg-white"}>  {name} {count} </li></Link>;
 }
