@@ -8,10 +8,11 @@ export default async function Page({
   params: Promise<{ name: string }>;
 }) {
   const { name } = await params;
+  const postsInCategory = posts.filter(post => post.category.toLowerCase() == name)
 
   return (
     <AppLayout>
-      <Main posts={posts.filter(post => post.category.toLowerCase() == name)} />
+      <Main posts={postsInCategory.length == 0 ? [] : postsInCategory} />
     </AppLayout>
   );
 }
