@@ -1,4 +1,7 @@
 import { AppLayout } from "@/components/Layout/AppLayout";
+import { posts } from "@repo/db/data";
+import { toUrlPath } from "@repo/utils/url";
+import { BlogDetail } from "@/components/Blog/Detail";
 
 export default async function Page({
   params,
@@ -6,6 +9,8 @@ export default async function Page({
   params: Promise<{ urlId: string }>;
 }) {
   const { urlId } = await params;
+  //const postDetails = posts.filter(post => toUrlPath(post.urlId) == urlId)
+  const postDetails = posts.find((post)=>(post.urlId == urlId))
 
-  return <AppLayout>Article not found</AppLayout>;
+  return <AppLayout>{postDetails == undefined ? "Article Not found" :<BlogDetail post={postDetails}/>} </AppLayout>;
 }
