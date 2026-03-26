@@ -33,9 +33,9 @@ export async function HistoryList({
   //       and render all history items using the SummaryItem component
   return <div>{historyItems.map((item) =>(
     <SummaryItem
-      key={item.date}
-      name={months[Number(item.date.split("/")[0])+1] + " " + item.date.split("/")[1]}
-      link={`/history/${item.date.split("/")[1]}/${item.date.split("/")[0]}`}
+      key={item.month}
+      name={months[item.month+1] + " " + item.year}
+      link={`/history/${item.month}/${item.year}`}
       isSelected={false}
       title=""
       count={item.count}
