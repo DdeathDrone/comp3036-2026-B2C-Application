@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@prisma/client": "^6.3.1",
+    "cookies-next": "^6.1.1",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "prisma": "^6.3.1"
   }
