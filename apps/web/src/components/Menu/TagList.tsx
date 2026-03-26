@@ -1,6 +1,8 @@
 import { type Post } from "@repo/db/data";
 import { tags } from "../../functions/tags";
 import { LinkList } from "./LinkList";
+import { SummaryItem } from "./SummaryItem";
+import { toUrlPath } from "@repo/utils/url";
 
 export async function TagList({
   selectedTag,
@@ -13,7 +15,16 @@ export async function TagList({
 
   return (
     <LinkList title="Tags">
-      Tags {/* Todo implement, use the summary item */}
+      {postTags.map((post) => (
+        <SummaryItem
+          key={post.name}
+          name={post.name}
+          link={`/tags/${toUrlPath(post.name)}`}
+          isSelected={false}
+          title=""
+          count={post.count}
+        />
+      ))}
     </LinkList>
   );
 }
