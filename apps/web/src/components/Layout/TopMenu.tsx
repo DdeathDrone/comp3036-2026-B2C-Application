@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import ThemeSwitch from "../Themes/ThemeSwitcher";
+import { toUrlPath } from "@repo/utils/url";
 
 function debounce<T extends (...args: Any[]) => Any>(fn: T, delay = 300) {
   let timeoutId: Any;
@@ -17,7 +18,7 @@ export function TopMenu({ query }: { query?: string }) {
   const handleSearch = debounce(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const search = event.target.value;
-      router.push(`/search?q=${search}`);
+      router.push(`/search?q=${toUrlPath(search)}`);
     },
   );
 
@@ -26,8 +27,8 @@ export function TopMenu({ query }: { query?: string }) {
 
   return (
     <div>
-      <form action="#" method="GET" className="grid flex-1 grid-cols-1">
-        <input />
+      <form action="#" method="GET" className="grid flex-1 grid-cols-1" >
+        <label htmlFor="search">Search:</label> <input id="search" type="text" onChange={e => handleSearch(e)} /> 
       </form>
       <div className="flex items-center gap-x-6">
         <ThemeSwitch />
