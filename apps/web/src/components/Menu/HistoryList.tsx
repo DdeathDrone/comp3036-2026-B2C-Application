@@ -34,7 +34,7 @@ export async function HistoryList({
   return <div>{historyItems.map((item) =>(
     <SummaryItem
       key={item.month}
-      name={months[item.month+1] + " " + item.year}
+      name={months[item.month] + " " + item.year}
       link={`/history/${item.month}/${item.year}`}
       isSelected={false}
       title=""

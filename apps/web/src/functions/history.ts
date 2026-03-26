@@ -9,12 +9,12 @@ export function history(posts: { date: Date; active: boolean }[]): { month: numb
   .sort((a, b) => b.date.valueOf()- a.date.valueOf())
   .reduce(
     (acc, post) =>{
-      const counter = acc.find((c) => c.month + "/" + c.year === post.date.getMonth() + "/" + post.date.getFullYear());
+      const counter = acc.find((c) => c.month + "/" + c.year === (post.date.getMonth()+1) + "/" + post.date.getFullYear());
       if (counter){
         counter.count++;
       }
       else{
-        acc.push({month: post.date.getMonth(), year: post.date.getFullYear(), count: 1} );
+        acc.push({month: post.date.getMonth()+1, year: post.date.getFullYear(), count: 1} );
       }
       
       return acc;
