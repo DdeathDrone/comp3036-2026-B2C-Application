@@ -1,6 +1,7 @@
 import { history } from "@/functions/history";
 import { type Post } from "@repo/db/data";
 import { SummaryItem } from "./SummaryItem";
+import { LinkList } from "./LinkList";
 
 const months = [
   "",
@@ -31,14 +32,19 @@ export async function HistoryList({
 
   // TODO: use the "history" function on "functions" directory to get the history
   //       and render all history items using the SummaryItem component
-  return <div>{historyItems.map((item) =>(
+  return <LinkList title="History">
+    {historyItems.map((item) =>(
     <SummaryItem
       key={item.month}
       name={months[item.month] + " " + item.year}
-      link={`/history/${item.month}/${item.year}`}
-      isSelected={false}
+      link={`/history/${item.year}/${item.month}`}
+      isSelected={selectedMonth + "/" + selectedYear == item.month + "/" + item.year}
       title=""
       count={item.count}
+      
     />
-  ))}</div>;
+    
+    
+  ))}
+  </LinkList>;
 }

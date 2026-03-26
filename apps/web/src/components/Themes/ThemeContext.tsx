@@ -26,7 +26,7 @@ export const useTheme = () => {
 export const ThemeProvider = ({children}: PropsWithChildren)=>{
   const router = useRouter();
 
-  const [theme, setTheme] = useState<Theme>(getCookie("theme")?.toString() || "light");
+  const [theme, setTheme] = useState<Theme>(getCookie("theme")?.toString() == "light" ? "light" : "dark"); 
   const toggleTheme = () =>{
     //theme == "light" ? document.cookie = "theme=dark" : document.cookie = "theme=light"
     //setCookie("theme",theme)

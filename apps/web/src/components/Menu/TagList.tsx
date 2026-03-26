@@ -20,7 +20,7 @@ export async function TagList({
           key={post.name}
           name={post.name}
           link={`/tags/${toUrlPath(post.name)}`}
-          isSelected={false}
+          isSelected={selectedTag == post.name}
           title=""
           count={post.count}
         />
