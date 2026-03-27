@@ -8,7 +8,20 @@ export function cx(
 
   // e.g. cx("foo", "bar") => "foo bar"
   // e.g. cx("foo", { bar: true }) => "foo bar"
-  return "";
+  let result = "";
+  for(const c of classes){
+    if(typeof(c) == "object" && c != null){
+      for(const k in c){
+        if (c[k]){
+          result = result + k + " "
+        }
+      }
+    }
+    else if (c != null && c != undefined){
+      result = result + c + " "
+    }
+  }
+  return result.trim();
 }
 
 export default cx;
