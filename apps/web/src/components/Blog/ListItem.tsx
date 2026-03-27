@@ -3,18 +3,28 @@ import Image from "next/image";
 import Link from "next/link";
 
 export function BlogListItem({ post }: { post: Post }) {
+  
+  const date = Intl.DateTimeFormat("en-US", 
+    {
+      year: "numeric",
+      month: "short",
+      day: "2-digit",
+    }
+  ).formatToParts(post.date);
+
   return (
     <article
       key={post.id}
       className="flex flex-row gap-8"
       data-test-id={`blog-post-${post.id}`}
     >
-      <p>{post.date.toLocaleDateString()} {post.category}</p>
+      <p>{date[2]?.value + " " + date[0]?.value + " " + date[4]?.value } </p>
+      <p>{post.category}</p>
       <Image src={post.imageUrl} alt={"image"} width={400} height={300}/>
-      <Link href={`/post/${post.urlId}`}><h2>{post.title}</h2></Link>
+      <Link href={`/post/${post.urlId}`}>{post.title}</Link>
       <p>{post.description}</p>
       <p>#{post.tags.replace(",", " #")}</p>
-      <p>👁️{post.views} ❤️{post.likes}</p>
+      <p>{post.views} views {post.likes} likes</p>
     </article>
   );
 }

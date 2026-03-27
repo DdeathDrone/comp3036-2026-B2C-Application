@@ -21,6 +21,7 @@ export default defineWorkspace([
       alias: {
         // Adjust the path as needed based on your project structure
         "next/link": path.resolve(__dirname, "src/mocks/link"),
+        "next/image": path.resolve(__dirname, "src/mocks/image")
       },
     },
     plugins: [react()],
