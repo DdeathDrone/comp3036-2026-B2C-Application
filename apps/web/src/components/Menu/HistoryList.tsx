@@ -30,8 +30,6 @@ export async function HistoryList({
 }) {
   const historyItems = history(posts);
 
-  // TODO: use the "history" function on "functions" directory to get the history
-  //       and render all history items using the SummaryItem component
   return <LinkList title="History">
     {historyItems.map((item) =>(
     <SummaryItem

@@ -18,7 +18,7 @@ export function TopMenu({ query }: { query?: string }) {
   const handleSearch = debounce(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const search = event.target.value;
-      router.push(`/search?q=${toUrlPath(search)}`);
+      router.push(`/search?q=${search}`);
     },
   );
 
@@ -28,7 +28,7 @@ export function TopMenu({ query }: { query?: string }) {
   return (
     <div>
       <form action="#" method="GET" className="grid flex-1 grid-cols-1" >
-        <label htmlFor="search">Search:</label> <input id="search" type="text" onChange={e => handleSearch(e)} /> 
+        <input id="search" type="text" placeholder="Search" onChange={e => handleSearch(e)} /> 
       </form>
       <div className="flex items-center gap-x-6">
         <ThemeSwitch />
