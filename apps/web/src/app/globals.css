@@ -26,6 +26,8 @@ html[data-theme="dark"] {
 
 html {
   background: var(--background);
+  color: var(--text);
+  
 }
 
 @theme inline {
@@ -35,4 +37,7 @@ html {
   --color-secondaryHover: var(--text-secondaryHover);
   --color-wsu: var(--wsu);
   --color-wsu-light: var(--wsu-light);
+}
+.selected{
+  color:red;
 }

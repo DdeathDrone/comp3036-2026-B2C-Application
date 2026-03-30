@@ -2,12 +2,14 @@ import { posts } from "@repo/db/data";
 import { CategoryList } from "./CategoryList";
 import { HistoryList } from "./HistoryList";
 import { TagList } from "./TagList";
+import Link from "next/link";
 
 export function LeftMenu() {
+  
   return (
     <div>
       {/* Sidebar component, swap this element with another sidebar if you like */}
-      <div>Top Links and blog name</div>
+      <Link className="text-2xl"href="/">Blog</Link>
       <nav>
         <ul role="list" className="flex flex-1 flex-col gap-y-7">
           <li>

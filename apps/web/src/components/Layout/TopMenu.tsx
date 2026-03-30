@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import ThemeSwitch from "../Themes/ThemeSwitcher";
+import { toUrlPath } from "@repo/utils/url";
 
 function debounce<T extends (...args: Any[]) => Any>(fn: T, delay = 300) {
   let timeoutId: Any;
@@ -26,8 +27,8 @@ export function TopMenu({ query }: { query?: string }) {
 
   return (
     <div>
-      <form action="#" method="GET" className="grid flex-1 grid-cols-1">
-        <input />
+      <form action="#" method="GET" className="grid flex-1 grid-cols-1" >
+        <input id="search" type="text" placeholder="Search" onChange={e => handleSearch(e)} /> 
       </form>
       <div className="flex items-center gap-x-6">
         <ThemeSwitch />
