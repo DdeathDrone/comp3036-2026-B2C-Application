@@ -103,38 +103,4 @@ export const posts: Post[] = [
     likes: 1,
     active: false,
   },
-  {
-    id: 5,
-    title: "Mongo Mongo Mongo Mongo",
-    urlId: "mongo-mongo-mongo-mongo",
-    description: `Illo sint voluptas. Error voluptates culpa eligendi. 
-       Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. 
-       Sed exercitationem placeat consectetur nulla deserunt vel 
-       iusto corrupti dicta laboris incididunt.`,
-    content: content + " ... post5",
-    imageUrl: "",
-    date: new Date("Dec 16, 2014"),
-    category: "Mongo",
-    tags: "test,tests",
-    views: 22,
-    likes: 1,
-    active: true,
-  },
-  {
-    id: 6,
-    title: "Dev Ops Dev Ops",
-    urlId: "dev-ops-dev-ops",
-    description: `Illo sint voluptas. Error voluptates culpa eligendi. 
-       Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. 
-       Sed exercitationem placeat consectetur nulla deserunt vel 
-       iusto corrupti dicta laboris incididunt.`,
-    content: content + " ... post6",
-    imageUrl: "",
-    date: new Date("Dec 16, 2014"),
-    category: "DevOps",
-    tags: "test,tests",
-    views: 22,
-    likes: 1,
-    active: true,
-  },
 ];
