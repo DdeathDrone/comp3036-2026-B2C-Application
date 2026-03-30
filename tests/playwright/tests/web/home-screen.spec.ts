@@ -147,8 +147,7 @@ test.describe("HOME SCREEN", () => {
           "light",
         );
       } else {
-        //await page.getByText("Dark Mode").click();
-        await expect(page.getByRole("button", { name: "Light Mode"})).toBeVisible();
+        await page.getByText("Light Mode").click();
         //await page.getByTestId("themeSwitchButton").click();
         // await page.waitForTimeout(1000);
         await expect(await page.getAttribute("html", "data-theme")).toBe(
