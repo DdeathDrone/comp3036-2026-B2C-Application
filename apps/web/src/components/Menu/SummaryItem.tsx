@@ -15,5 +15,5 @@ export function SummaryItem({
   // TODO: Implement the summary item
   // must show the number of posts in that category and the name
   // if if is selected it must show in different color/background
-  return <><li data-test-id="post-count"> <Link title={title} className={isSelected ? "selected" : ""} href={link}>{name} </Link> {count}</li></>;
+  return <> <Link title={title} className={isSelected ? "selected" : ""} href={link}> <li data-test-id="post-count">{name}  {count}</li></Link></>;
 }
