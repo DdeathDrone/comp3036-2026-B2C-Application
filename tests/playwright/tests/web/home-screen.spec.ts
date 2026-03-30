@@ -144,7 +144,8 @@ test.describe("HOME SCREEN", () => {
           "light",
         );
       } else {
-        await page.getByText("Dark Mode").click();
+        const darkModeButtonElement = await page.getByText("Dark Mode");
+        await darkModeButtonElement.click();
         // await page.waitForTimeout(1000);
         await expect(await page.getAttribute("html", "data-theme")).toBe(
           "dark",

@@ -7,7 +7,7 @@ const ThemeSwitch = () => {
   const theme = useTheme(); // <- TODO: Get the theme from the context
 
   return (
-    <Button onClick={theme?.toggleTheme}>{theme?.theme === "light" ? "Dark Mode" : "☀️ Light Mode"}</Button>
+    <Button onClick={theme?.toggleTheme}>{theme?.theme === "light" ? "🌙 Dark Mode" : "☀️ Light Mode"}</Button>
   );
 };
 
