@@ -147,7 +147,7 @@ test.describe("HOME SCREEN", () => {
         );
       } else {
         //await page.getByText("Dark Mode").click();
-        await expect(await page.getByText("Dark Mode")).toBeVisible();
+        await expect(page.getByText("Dark Mode")).toBeVisible();
         //await page.getByTestId("themeSwitchButton").click();
         // await page.waitForTimeout(1000);
         await expect(await page.getAttribute("html", "data-theme")).toBe(
