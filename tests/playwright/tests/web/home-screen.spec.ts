@@ -139,7 +139,7 @@ test.describe("HOME SCREEN", () => {
       // HOME SCREEN > User must be able to switch between dark and light theme with a button
 
       const html = await page.getAttribute("html", "data-theme");
-      console.log(html)
+      console.log(page.content)
       if (html === "dark") {
         await page.getByText("Light Mode").click();
         // await page.waitForTimeout(1000);
