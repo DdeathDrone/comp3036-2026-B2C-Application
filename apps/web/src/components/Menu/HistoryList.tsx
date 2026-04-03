@@ -37,7 +37,7 @@ export async function HistoryList({
       name={months[item.month] + " " + item.year}
       link={`/history/${item.year}/${item.month}`}
       isSelected={selectedMonth + "/" + selectedYear == item.month + "/" + item.year}
-      title=""
+      title={"History / " + months[item.month] + ", " + item.year}
       count={item.count}
       
     />
