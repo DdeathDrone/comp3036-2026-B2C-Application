@@ -4,6 +4,7 @@ import styles from "./page.module.css";
 import { LoginPage } from "../components/LoginPage";
 import { LogOutButton } from "../components/LogOutButton";
 import { AdminList } from "../components/AdminList";
+import { Filters } from "../components/Filters";
 export default async function Home() {
   // use the is logged in function to check if user is authorised
   // we will use the cookie based approach
@@ -16,6 +17,7 @@ export default async function Home() {
       <>
       <h1 className="text-2xl">Admin of Full Stack Blog</h1>
       <main className={styles.main}>
+        <Filters/>
         <ul>
           {posts.map((p) => (
             <li key={p.id}>
@@ -25,7 +27,7 @@ export default async function Home() {
         </ul>
         
       </main>
-      <LogOutButton/>
+      <LogOutButton/> <a className="border px-1 rounded-md" href="/posts/create">Create Post</a>
       </>
     );
   }
