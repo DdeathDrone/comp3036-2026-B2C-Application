@@ -21,7 +21,7 @@ export default async function Home() {
         
         
       </main>
-      <LogOutButton/> <a className="border px-1 rounded-md" href="/posts/create">Create Post</a>
+      <LogOutButton/> <a className="border px-1 rounded-md mb-2" href="/posts/create">Create Post</a>
       </>
     );
   }
