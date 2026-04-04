@@ -2,5 +2,5 @@
 import { logOut } from "../functions/logOut";
 
 export function LogOutButton(){
-    return <button onClick={logOut}>LogOut</button>
+    return <button onClick={logOut}>Logout</button>
 }
