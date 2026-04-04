@@ -9,7 +9,6 @@ export function AdminList({post} : {post : Post}){
       day: "2-digit",
     }
   ).formatToParts(post.date);
-
     return (
     <>
     <article className="ml-2">

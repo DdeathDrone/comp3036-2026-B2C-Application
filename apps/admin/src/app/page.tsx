@@ -17,14 +17,8 @@ export default async function Home() {
       <>
       <h1 className="text-2xl">Admin of Full Stack Blog</h1>
       <main className={styles.main}>
-        <Filters/>
-        <ul>
-          {posts.map((p) => (
-            <li key={p.id}>
-              <AdminList post={p}></AdminList>
-            </li>
-          ))}
-        </ul>
+        <Filters posts={posts}/>
+        
         
       </main>
       <LogOutButton/> <a className="border px-1 rounded-md" href="/posts/create">Create Post</a>
