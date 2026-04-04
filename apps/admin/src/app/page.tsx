@@ -14,7 +14,7 @@ export default async function Home() {
   } else {
     return (
       <>
-      <h1>Admin of Full Stack Blog</h1>
+      <h1 className="text-2xl">Admin of Full Stack Blog</h1>
       <main className={styles.main}>
         <ul>
           {posts.map((p) => (
