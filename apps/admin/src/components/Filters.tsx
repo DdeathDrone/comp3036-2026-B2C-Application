@@ -80,16 +80,16 @@ export function Filters({posts} : {posts : Post[]}){
           </select>
 
           <label htmlFor="ContentFilter">Filter by Content:</label> 
-          <input className="border ml-2 mr-2" type="text" name="ContentFilter" onChange={handleFilter}></input>
+          <input className="border ml-2 mr-2" type="text" name="ContentFilter" id="ContentFilter" onChange={handleFilter}></input>
 
           <label htmlFor="TagFilter">Filter by Tag:</label>
-          <input className="border ml-2 mr-2" type="text" name="TagFilter" onChange={handleFilter}></input>
+          <input className="border ml-2 mr-2" type="text" name="TagFilter" id="TagFilter" onChange={handleFilter}></input>
 
           <label htmlFor="DateFilter">Filter by Date Created:</label>
-          <input className="border ml-2 mr-2" type="date" name="DateFilter" onChange={handleFilter}></input>
+          <input className="border ml-2 mr-2" type="date" name="DateFilter"  id="DateFilter"  onChange={handleFilter}></input>
 
           <label htmlFor="ActiveFilter">Show Only Active Posts:</label>
-          <input className="ml-2 mt-1"type="checkbox" name="ActiveFilter" onChange={handleFilter}></input>
+          <input className="ml-2 mt-1"type="checkbox"  id="ActiveFilter" name="ActiveFilter" onChange={handleFilter}></input>
 
           <button className="border ml-2 mr-2 px-2" onClick={()=>setFilters({content: undefined, tag: undefined, date: undefined, active:false})}>Clear Filters</button>
         </form>
