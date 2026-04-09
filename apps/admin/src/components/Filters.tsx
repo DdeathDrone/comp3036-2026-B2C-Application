@@ -46,28 +46,32 @@ const reducer = (state: State, action: Action) => {
         posts: action.postInit.filter((p)=> (result.content == undefined ? true : p.title.toLowerCase().includes(result.content) ||
         p.content.toLowerCase().includes(result.content)) 
         && (result.tag == undefined ? true : p.tags.toLowerCase().includes(result.tag)) 
-        && (result.date == undefined ? true : p.date.toDateString() == result.date.toDateString())
+        && (result.date == undefined ? true : p.date.getFullYear() >= result.date.getFullYear())
         && (result.active ? p.active : true )),
         
       };
     case "SORT":
-      let r;
+      const r : Post[] = state.posts;
       if(action.event.target.value == "title-asc"){
-        r = state.posts.sort((a,b)=> a.title.localeCompare(b.title))
+        r.sort((a,b)=> a.title.localeCompare(b.title))
       }
       else if(action.event.target.value == "title-desc"){
-        r = state.posts.sort((a,b)=> b.title.localeCompare(a.title))
+
+        r.sort((a,b)=> b.title.localeCompare(a.title))
+
       }
       else if(action.event.target.value == "date-asc"){
-        r = state.posts.sort((a,b) => a.date.valueOf() - b.date.valueOf())
+        r.sort((a,b) => a.date.valueOf() - b.date.valueOf())
       }
       else if(action.event.target.value == "date-desc"){
-        r = state.posts.sort((a,b) => b.date.valueOf() - a.date.valueOf())
+        r.sort((a,b) => b.date.valueOf() - a.date.valueOf())
       }
       return{
         filters: state.filters,
-        posts: r
-      }
+        posts: r,
+        
+        
+      };
     case "CLEAR":
       return{
         filters: {content: undefined, tag: undefined, date: undefined, active:false},
@@ -83,10 +87,7 @@ export function Filters({posts} : {posts : Post[]}){
     //const [filters, setFilters] = useState<{content?: string, tag?: string, date?: Date, active: boolean}>({content: undefined, tag: undefined, date: undefined, active:false})
     //const [sort, setSort] = useState("title-asc");
 
-    const init : State = {posts: posts.sort((a,b) => a.title.localeCompare(b.title)), filters: {content: undefined, tag: undefined, date: undefined, active:false}}
-
-    const [state, dispatch] = useReducer(reducer, init);
-    console.log(state.filters);
+    const [state, dispatch] = useReducer(reducer, {posts: [...posts].sort((a,b) => b.date.valueOf() - a.date.valueOf()), filters: {content: undefined, tag: undefined, date: undefined, active:false}});
 
     const handleDebounce = debounce( // Intended to prevent too many refreshes, but tests hate it sooooooooooo idk
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -148,11 +149,11 @@ export function Filters({posts} : {posts : Post[]}){
         <form className="flex flex-row mt-1">
 
           <label htmlFor="Sort">Sort By:</label>
-          <select className="border ml-2 mr-2" name="Sort" defaultValue="Title-asc" onChange={(e) => dispatch({type: "SORT", event: e})}>
-            <option value="title-asc">Title-asc</option>
-            <option value="title-desc">Title-desc</option>
-            <option value="date-asc">Date-asc</option>
-            <option value="date-desc">Date-desc</option>
+          <select className="border ml-2 mr-2" name="Sort" id="Sort" defaultValue="date-desc" onChange={(e) => dispatch({type: "SORT", event: e})}>
+            <option value="title-asc" id="title-asc">title-asc</option>
+            <option value="title-desc" id="title-desc">title-desc</option>
+            <option value="date-asc" id="date-asc">date-asc</option>
+            <option value="date-desc" id="date-desc">date-desc</option>
           </select>
 
           <label htmlFor="ContentFilter">Filter by Content:</label> 
