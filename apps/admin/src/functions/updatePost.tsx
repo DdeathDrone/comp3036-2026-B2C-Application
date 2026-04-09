@@ -22,7 +22,7 @@ export async function updatePost(prevState: {success: boolean, error?: string}, 
     else if(imageUrl.length == 0){
         return {success: false, error: "Image URL is required"}
     }
-    else if(imageUrl.length == 0){ // TODO: check validity of url
+    else if(!/[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/.test(imageUrl)){ 
         return {success: false, error: "This is not a valid URL"}
     }
     else if(tags.length == 0){
