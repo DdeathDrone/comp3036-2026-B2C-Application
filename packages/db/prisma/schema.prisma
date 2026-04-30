@@ -20,7 +20,7 @@ model Post {
   date   DateTime @default(now())
   category String
   views  Int      @default(0)
-  Likes  Like[]
+  likes  Like[]
   tags String
   active Boolean  @default(true)
   // Incomplete
