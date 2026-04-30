@@ -27,10 +27,16 @@ export async function POST(req: NextRequest){
     
     //const response = NextResponse.redirect('http:localhost:3002/');
     const response = NextResponse.json(sessionToken);
-    /*response.cookies.set(
+    response.cookies.set(
         'auth_token',
         sessionToken,
         {httpOnly: true, secure: true, maxAge: 7*24*60*60, path:'/'}
-    );*/
+    );
+    return response;
+}
+
+export async function DELETE(req: NextRequest){
+    const response = NextResponse.json({success: true, status: 200});
+    response.cookies.delete("auth_token");
     return response;
 }
