@@ -6,7 +6,7 @@ export async function logIn(state: {success:boolean; error?: string}, formData :
     //const cookieStore = await cookies();
     const password = formData.get('password') as string;
     /*if (password == "123"){
-        cookieStore.set("auth_token", "true",{httpOnly: true, maxAge: 600}); //TODO: Change max age when needed
+        cookieStore.set("auth_token", "true",{httpOnly: true, maxAge: 600});
         return {success: true};
     }*/
     const response = await fetch(`/api/auth`, {

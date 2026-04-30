@@ -12,8 +12,6 @@ export async function logOut(){ //TODO: Finish implementation with backend
 
     const response = await fetch(`/api/auth`, {
         method: "DELETE",
-        //headers: {"Content-Type": "multipart/form-data"},
-        //body: JSON.stringify(password),
     });
     //cookieStore.delete("auth_token");
     //revalidatePath("/");

@@ -8,10 +8,25 @@ export type Post = {
   date: Date;
   category: string;
   views: number;
-  likes: number;
+  likes: number | {postId: number, userIP: string}[];
   tags: string;
   active: boolean;
 };
+/*
+export type Post = {
+  id: number;
+  urlId: string;
+  title: string;
+  content: string;
+  description: string;
+  imageUrl: string;
+  date: Date;
+  category: string;
+  views: number;
+  likes: {postId: number, userId: string}[];
+  tags: string;
+  active: boolean;
+};*/
 
 const content = `
   # Title 1
