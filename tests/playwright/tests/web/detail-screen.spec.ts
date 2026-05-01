@@ -28,7 +28,7 @@ test.describe("DETAIL SCREEN", () => {
       await expect(item.getByText("#Back-End")).toBeVisible();
       await expect(item.getByText("#Databases")).toBeVisible();
       await expect(item.getByText("18 Apr 2022")).toBeVisible();
-      await expect(item.getByText("320 views")).toBeVisible(); //test adjusted as it was different to db, original test was 321 views, db is 320, a test in home also says 320, i am changing this to 320
+      await expect(item.getByText("321 views")).toBeVisible(); //test was previously adjusted to 320 until database implementation, view count now increases with db implementation so test change has been reverted.
       await expect(item.getByText("3 likes")).toBeVisible();
 
       // DETAIL SCREEN > Detail text is stored as Markdown, which needs to be converted to HTML

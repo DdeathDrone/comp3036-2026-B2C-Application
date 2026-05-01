@@ -27,7 +27,7 @@ export const ThemeProvider = ({children}: PropsWithChildren)=>{
   const toggleTheme = () =>{
     //theme == "light" ? document.cookie = "theme=dark" : document.cookie = "theme=light"
     //setCookie("theme",theme)
-    setCookie("theme", getCookie("theme")?.toString() == undefined ? "light" : getCookie("theme")?.toString() == "light" ? "dark" : "light")
+    setCookie("theme", getCookie("theme")?.toString() == undefined ? "dark" : getCookie("theme")?.toString() == "light" ? "dark" : "light")
     setTheme((t)=> (
       t == "light" ? "dark" : "light"
     ))
