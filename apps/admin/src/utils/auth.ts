@@ -15,6 +15,6 @@ export async function isLoggedIn() {
 
   //return token && jwt.verify(token, env.JWT_SECRET || "") 
   
-  try{token && jwt.verify(token, env.JWT_SECRET || ""); return true}
+  try{token && jwt.verify(token, env.JWT_SECRET || ""); return token && jwt.verify(token, env.JWT_SECRET || "")}
   catch{return false}
 }

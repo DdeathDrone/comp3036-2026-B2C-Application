@@ -5,6 +5,9 @@ import Link from "next/link";
 
 export async function BlogDetail({ post }: { post: Post }) {
   const content = await marked.parse(post.content);
+  const update = await fetch(`http://localhost:3001/api/views?urlId=${post.urlId}`,{
+    method:"PATCH",
+  });
   const date = Intl.DateTimeFormat("en-US", 
     {
       year: "numeric",
@@ -20,6 +23,6 @@ export async function BlogDetail({ post }: { post: Post }) {
     <Image src={post.imageUrl} alt={"image"} width={500} height={400}/>
     <div data-test-id="content-markdown" dangerouslySetInnerHTML={{ __html: content}}></div>
     <p>#{post.tags.replace(",", " #")}</p>
-    <p>{post.views} views {post.likes.length} likes</p>
+    <p>{post.views+1} views {post.likes.length} likes</p>
   </article>;
 }
