@@ -12,7 +12,7 @@ export default async function Page({
 }) {
   const { q } = await searchParams;
   //const searchResult = posts.filter(post => post.urlId.includes(toUrlPath(q)))
-  const searchResult = await client.db.post.findMany({where: {urlId: {contains: toUrlPath(q)}}, include:{likes:true}});
+  const searchResult = await client.db.post.findMany({where: {urlId: {contains: toUrlPath(q)}, active:true}, include:{likes:true}});
 
   return (
     <AppLayout query={q}>

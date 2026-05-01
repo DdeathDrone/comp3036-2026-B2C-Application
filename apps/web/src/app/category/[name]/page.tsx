@@ -10,7 +10,7 @@ export default async function Page({
 }) {
   const { name } = await params;
   //const postsInCategory = posts.filter(post => post.category.toLowerCase() == name)
-  const postsInCategory = await client.db.post.findMany({where:{category:{ contains:name  }}, include:{likes:true}}); //TODO: come back to this, might be better solution
+  const postsInCategory = await client.db.post.findMany({where:{category:{ contains:name  }, active:true}, include:{likes:true}}); //TODO: come back to this, might be better solution
 
   return (
     <AppLayout>

@@ -12,7 +12,7 @@ export default async function Page({
   const { urlId } = await params;
   //const postDetails = posts.filter(post => toUrlPath(post.urlId) == urlId)
   //const postDetails = posts.find((post)=>(post.urlId == urlId))
-  const postDetails = await client.db.post.findUnique({where: {urlId: urlId}, include: {likes: true}});
+  const postDetails = await client.db.post.findUnique({where: {urlId: urlId, active:true}, include: {likes: true}});
 
   return <AppLayout>{postDetails == undefined ? "Article Not found" :<BlogDetail post={postDetails}/>} </AppLayout>;
 }

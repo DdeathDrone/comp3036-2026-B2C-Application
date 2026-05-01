@@ -6,7 +6,7 @@ import styles from "./page.module.css";
 export default async function Home() {
   return (
     <AppLayout>
-      <Main posts={ await client.db.post.findMany({include: {likes: true}})} className={styles.main} />
+      <Main posts={ await client.db.post.findMany({where:{active:true}, include: {likes: true}})} className={styles.main} />
     </AppLayout>
   );
 }

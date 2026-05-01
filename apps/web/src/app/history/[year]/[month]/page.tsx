@@ -11,7 +11,7 @@ export default async function Page({
   const {year, month} = await params;
   const date = new Date(parseInt(year), parseInt(month)-1); // Date value defaults to 31st, anything greater than 31 of last month is from selected month
   //const postsInDate = posts.filter(post => String(post.date.getMonth()+1) === month && String(post.date.getFullYear()) === year);
-  const postsInDate = await client.db.post.findMany({where:{date: {gt: date}}, include: {likes: true}});
+  const postsInDate = await client.db.post.findMany({where:{date: {gt: date}, active:true}, include: {likes: true}});
   return (
     <AppLayout>
       <Main posts={postsInDate.length == 0 ? [] : postsInDate} />

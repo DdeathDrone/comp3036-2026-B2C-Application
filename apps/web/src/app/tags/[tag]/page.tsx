@@ -10,7 +10,7 @@ export default async function Page({
     params: Promise<{ tag: string }>;
 }) {
     const { tag } = await params;
-    const postsInTag = await client.db.post.findMany({where: {tags: { contains: tag}}, include:{likes: true}});
+    const postsInTag = await client.db.post.findMany({where: {tags: { contains: tag}, active:true}, include:{likes: true}});
     /*
     const postsInTag = posts
     .filter(post => post.tags
