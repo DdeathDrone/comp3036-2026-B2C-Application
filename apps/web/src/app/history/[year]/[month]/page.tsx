@@ -1,6 +1,7 @@
 import { AppLayout } from "@/components/Layout/AppLayout";
 import { Main } from "@/components/Main";
-import { posts } from "@repo/db/data";
+import { client } from "@repo/db/client";
+//import { posts } from "@repo/db/data";
 
 export default async function Page({
   params,
@@ -8,7 +9,9 @@ export default async function Page({
   params: Promise<{ year: string; month: string }>;
 }) {
   const {year, month} = await params;
-  const postsInDate = posts.filter(post => String(post.date.getMonth()+1) === month && String(post.date.getFullYear()) === year);
+  const date = new Date(parseInt(year), parseInt(month)-1); // Date value defaults to 31st, anything greater than 31 of last month is from selected month
+  //const postsInDate = posts.filter(post => String(post.date.getMonth()+1) === month && String(post.date.getFullYear()) === year);
+  const postsInDate = await client.db.post.findMany({where:{date: {gt: date}}, include: {likes: true}});
   return (
     <AppLayout>
       <Main posts={postsInDate.length == 0 ? [] : postsInDate} />

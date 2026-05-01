@@ -24,7 +24,7 @@ export function BlogListItem({ post }: { post: Post }) {
       <Link href={`/post/${post.urlId}`}>{post.title}</Link>
       <p>{post.description}</p>
       <p>#{post.tags.replace(",", " #")}</p>
-      <p>{post.views} views {post.likes} likes</p>
+      <p>{post.views} views {post.likes.length} likes</p>
     </article>
   );
 }

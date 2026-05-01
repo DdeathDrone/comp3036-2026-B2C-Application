@@ -1,4 +1,4 @@
-export type Post = {
+export type SeedPost = {
   id: number;
   urlId: string;
   title: string;
@@ -8,11 +8,11 @@ export type Post = {
   date: Date;
   category: string;
   views: number;
-  likes: number | {postId: number, userIP: string}[];
+  likes: number;
   tags: string;
   active: boolean;
 };
-/*
+
 export type Post = {
   id: number;
   urlId: string;
@@ -23,10 +23,10 @@ export type Post = {
   date: Date;
   category: string;
   views: number;
-  likes: {postId: number, userId: string}[];
+  likes: {postId: number, userIP: string}[];
   tags: string;
   active: boolean;
-};*/
+};
 
 const content = `
   # Title 1
@@ -49,7 +49,7 @@ Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde.
 Sed exercitationem placeat consectetur nulla deserunt vel 
 iusto corrupti dicta laboris incididunt.`;
 
-export const posts: Post[] = [
+export const posts: SeedPost[] = [
   {
     id: 1,
     title: "Boost your conversion rate",

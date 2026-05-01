@@ -20,6 +20,6 @@ export async function BlogDetail({ post }: { post: Post }) {
     <Image src={post.imageUrl} alt={"image"} width={500} height={400}/>
     <div data-test-id="content-markdown" dangerouslySetInnerHTML={{ __html: content}}></div>
     <p>#{post.tags.replace(",", " #")}</p>
-    <p>{post.views} views {post.likes} likes</p>
+    <p>{post.views} views {post.likes.length} likes</p>
   </article>;
 }
