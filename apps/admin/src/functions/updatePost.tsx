@@ -2,12 +2,12 @@
 
 export async function updatePost(prevState: {success: boolean, error?: string, postId?: number, urlId?: string}, formData : FormData) : Promise<{success: boolean; error?: string; postId?: number; urlId?: string}>{
     console.log(prevState.postId);
-    const title = formData.get('title') as string;
-    const description = formData.get('description') as string;
-    const content = formData.get('content') as string;
-    const tags = formData.get('tags') as string;
-    const imageUrl = formData.get('imageUrl') as string;
-    const category = formData.get('category') as string;
+    const title = formData.get('Title') as string;
+    const description = formData.get('Description') as string;
+    const content = formData.get('Content') as string;
+    const tags = formData.get('Tags') as string;
+    const imageUrl = formData.get('ImageUrl') as string;
+    const category = formData.get('Category') as string;
 
     if(title.length == 0 ){
         return {success:false, error:"Title is required", postId:prevState.postId, urlId: prevState.urlId}

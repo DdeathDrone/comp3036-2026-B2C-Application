@@ -12,7 +12,16 @@ export async function validate(password: string) : Promise<boolean>{
 
 export async function POST(req: NextRequest){
     //const password  = (await req.formData()).get("password") as string;
-    const password = await req.json();
+    var password;
+    if(req.headers.get("Content-Type") == "multipart/form-data"){
+        var password = await req.json();
+       
+    }
+    else{
+        var { password }  = await req.json();
+         console.log("here");
+    }
+    console.log(password);
 
     if(!await validate(password)){
         return NextResponse.json({message: 'Password is incorrect'}, {status: 401});

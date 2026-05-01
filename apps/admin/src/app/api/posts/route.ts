@@ -15,7 +15,7 @@ export async function PATCH(req: NextRequest){
 }
 
 export async function PUT(req: NextRequest){
-    const {title, description, content, tags, imageUrl, category} = await req.json();
+    const {Title, Description, Content, Tags, ImageUrl, Category} = await req.json();
     //console.log(`${title}, ${description},, ${content}, ${tags}, ${imageUrl}, ${category}`)
     const { searchParams } = new URL(req.url);
     const stringid = searchParams.get("id");
@@ -29,27 +29,27 @@ export async function PUT(req: NextRequest){
         result = await client.db.post.update({
             where: {id: postid}, 
             data: {
-                title:title, 
-                urlId: ( pathname ? pathname.split("0-")[0] == toUrlPath(title) ? pathname : await makeUrlId(title) : await makeUrlId(title)), 
-                description: description, 
-                category: category,
-                content: content, 
-                tags: tags, 
-                imageUrl: imageUrl}
+                title:Title, 
+                urlId: ( pathname ? pathname.split("0-")[0] == toUrlPath(Title) ? pathname : await makeUrlId(Title) : await makeUrlId(Title)), 
+                description: Description, 
+                category: Category,
+                content: Content, 
+                tags: Tags, 
+                imageUrl: ImageUrl}
         });
     }
     else{
         result = await client.db.post.create({
             data: {
-                urlId: await makeUrlId(title),
-                title:title, 
-                content: content, 
-                description: description, 
-                imageUrl: imageUrl, 
+                urlId: await makeUrlId(Title),
+                title:Title, 
+                content: Content, 
+                description: Description, 
+                imageUrl: ImageUrl, 
                 date: new Date(),
-                category: category,
+                category: Category,
                 views: 0, 
-                tags: tags, 
+                tags: Tags, 
                 active: true, 
                 }
         });
