@@ -12,6 +12,7 @@ export async function validate(password: string) : Promise<boolean>{
 
 export async function POST(req: NextRequest){
     //const password  = (await req.formData()).get("password") as string;
+    /*
     var password;
     if(req.headers.get("Content-Type") == "multipart/form-data"){
         var password = await req.json();
@@ -19,11 +20,12 @@ export async function POST(req: NextRequest){
     }
     else{
         var { password }  = await req.json();
-         console.log("here");
     }
-    console.log(password);
+        */
+    const password = await req.json();
+    console.log(typeof(password));
 
-    if(!await validate(password)){
+    if(req.headers.get("Content-Type") == "multipart/form-data" ? !await validate(password) : !await validate(password.password)){
         return NextResponse.json({message: 'Password is incorrect'}, {status: 401});
     }
     const sessionToken = jwt.sign(
