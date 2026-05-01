@@ -1,7 +1,7 @@
 "use server"
 
 export async function updatePost(prevState: {success: boolean, error?: string, postId?: number, urlId?: string}, formData : FormData) : Promise<{success: boolean; error?: string; postId?: number; urlId?: string}>{
-    console.log(prevState.postId);
+    //console.log(prevState.postId);
     const title = formData.get('Title') as string;
     const description = formData.get('Description') as string;
     const content = formData.get('Content') as string;

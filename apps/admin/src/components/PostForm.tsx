@@ -50,8 +50,8 @@ export function PostForm({post} : {post? : Post}){
             <div>
                 <button className="bg-black text-white rounded-2xl py-1 px-2" id="Preview" formAction={async (formData : FormData) => {
                      setPreview({state: !preview.state, 
-                        contentParsed: preview.state ? preview.contentParsed : await marked.parse(formData.get("content") as string)  })
-                        console.log(inputRef.current);
+                        contentParsed: preview.state ? preview.contentParsed : await marked.parse(formData.get("Content") as string)  })
+                        //console.log(inputRef.current);
                         if(preview.state){
                             if(inputRef.current != null){
                             inputRef.current.focus();
