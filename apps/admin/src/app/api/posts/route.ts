@@ -16,13 +16,10 @@ export async function PATCH(req: NextRequest){
 
 export async function PUT(req: NextRequest){
     const {Title, Description, Content, Tags, ImageUrl, Category} = await req.json();
-    //console.log(`${title}, ${description},, ${content}, ${tags}, ${imageUrl}, ${category}`)
     const { searchParams } = new URL(req.url);
     const stringid = searchParams.get("id");
     const pathname = searchParams.get("urlId");
-    //console.log(pathname.slice(0, title.length));
-    //console.log(pathname?.split("0-"))
-    //console.log(toUrlPath(title));
+  
     const postid = parseInt(stringid ? stringid : "");
     var result;
     if(stringid){
@@ -30,7 +27,9 @@ export async function PUT(req: NextRequest){
             where: {id: postid}, 
             data: {
                 title:Title, 
-                urlId: ( pathname ? pathname.split("0-")[0] == toUrlPath(Title) ? pathname : await makeUrlId(Title) : await makeUrlId(Title)), 
+                //urlId: ( pathname ? pathname.split("0-")[0] == toUrlPath(Title) ? pathname : await makeUrlId(Title) : await makeUrlId(Title)), 
+                //Unique UrlID feature removed because thats what tests wanted, error will now be thrown if u have the same title as another user.
+                urlId: toUrlPath(Title),
                 description: Description, 
                 category: Category,
                 content: Content, 
@@ -41,7 +40,8 @@ export async function PUT(req: NextRequest){
     else{
         result = await client.db.post.create({
             data: {
-                urlId: await makeUrlId(Title),
+                //urlId: await makeUrlId(Title),
+                urlId: toUrlPath(Title),
                 title:Title, 
                 content: Content, 
                 description: Description, 
