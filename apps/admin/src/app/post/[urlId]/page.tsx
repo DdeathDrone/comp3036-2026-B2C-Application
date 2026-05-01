@@ -1,7 +1,8 @@
-import { posts } from "@repo/db/data";
+//import { posts } from "@repo/db/data";
 import { PostForm } from "../../../components/PostForm";
 import { isLoggedIn } from "../../../utils/auth";
 import { LoginPage } from "../../../components/LoginPage";
+import { client } from "@repo/db/client";
 
 export default async function Page({
   params,
@@ -14,7 +15,8 @@ export default async function Page({
       return <><main>Sign in to your account</main> <LoginPage></LoginPage></>;
     } else {
       const { urlId } = await params;
-      const postDetails = posts.find((post)=>(post.urlId == urlId))
+      //const postDetails = posts.find((post)=>(post.urlId == urlId))
+      const postDetails = await client.db.post.findUnique({where: {urlId: urlId}, include: {likes: true}})
      return <>{postDetails == undefined ? "Article Not found" : <PostForm post={postDetails}></PostForm>}</>
     }
 }

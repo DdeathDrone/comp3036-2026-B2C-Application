@@ -22,7 +22,7 @@ export function AdminList({post} : {post : Post}){
         <p>{"Posted on " + date[0]?.value + " " + date[2]?.value + ", " + date[4]?.value}</p>
         <p>Category: {post.category}</p>
         <button className="border border-black rounded-sm px-1"onClick={async ()=> {await fetch(`api/posts?id=${post.id}${ isActive ? ("&active=" + isActive) : ""}`, {
-            method: "PUT"
+            method: "PATCH"
           });
           setActive(!isActive);
           router.push("/");
