@@ -6,7 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
 const adminPass = await bcrypt.hash(env.PASSWORD, 10)
 //const refreshTokens: Map<string, number> = new Map();
 
-export async function validate(password: string) : Promise<boolean>{
+async function validate(password: string) : Promise<boolean>{
     return bcrypt.compare(password, adminPass);
 }
 
