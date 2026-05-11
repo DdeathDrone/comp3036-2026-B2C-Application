@@ -1,4 +1,4 @@
-import { type Post } from "@repo/db/data";
+import { type Product } from "@repo/db/data";
 import { tags } from "../../functions/tags";
 import { LinkList } from "./LinkList";
 import { SummaryItem } from "./SummaryItem";
@@ -6,12 +6,12 @@ import { toUrlPath } from "@repo/utils/url";
 
 export async function TagList({
   selectedTag,
-  posts,
+  products,
 }: {
   selectedTag?: string;
-  posts: Post[];
+  products: Product[];
 }) {
-  const postTags = await tags(posts);
+  const postTags = await tags(products);
 
   return (
     <LinkList title="Tags">
@@ -19,9 +19,9 @@ export async function TagList({
         <SummaryItem
           key={post.name}
           name={post.name}
-          link={`/tags/${toUrlPath(post.name)}`}
+          link={`/category/${toUrlPath(post.name)}`}
           isSelected={selectedTag == post.name}
-          title={"Tag / " + post.name}
+          title={"Category / " + post.name}
           count={post.count}
         />
       ))}

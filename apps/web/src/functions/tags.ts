@@ -1,6 +1,6 @@
 // import { posts, type Post } from "../components/data";
 
-export async function tags(posts: { tags: string; active: boolean }[]): Promise<{name: string, count: number}[]> {
+export async function tags(posts: { categories: string; active: boolean }[]): Promise<{name: string, count: number}[]> {
   
 
   return posts
@@ -8,14 +8,14 @@ export async function tags(posts: { tags: string; active: boolean }[]): Promise<
   .reduce(
     (acc, post) =>{
      
-      const tags = post.tags.split(",");
-      tags.forEach((tag) =>{
-        const counter = acc.find((c) => c.name == tag);
+      const cats = post.categories.split(",");
+      cats.forEach((cat) =>{
+        const counter = acc.find((c) => c.name == cat);
         if(counter){
           counter.count++;
         }
         else{
-          acc.push({name:tag, count: 1});
+          acc.push({name:cat, count: 1});
         }
       });
       
