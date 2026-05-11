@@ -14,10 +14,15 @@ model Post {
   id     Int      @id @default(autoincrement())
   urlId  String   @unique
   title  String
+  content String
+  description String
+  imageUrl String
   date   DateTime @default(now())
+  category String
   views  Int      @default(0)
+  likes  Like[]
+  tags String
   active Boolean  @default(true)
-  Likes  Like[]
   // Incomplete
 }
 

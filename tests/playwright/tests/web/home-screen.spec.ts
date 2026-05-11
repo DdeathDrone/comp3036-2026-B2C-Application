@@ -139,16 +139,16 @@ test.describe("HOME SCREEN", () => {
       // HOME SCREEN > User must be able to switch between dark and light theme with a button
 
       const html = await page.getAttribute("html", "data-theme");
-      console.log((await page.content()).split("button")[1])
+      //console.log((await page.content()).split("button")[1]) forgot i had this log here
       if (html === "dark") {
         await page.getByText("Light Mode").click();
-        // await page.waitForTimeout(1000);
+        await page.waitForTimeout(1000);
         await expect(await page.getAttribute("html", "data-theme")).toBe(
           "light",
         );
       } else {
         await page.getByText("Dark Mode").click();
-        // await page.waitForTimeout(1000);
+        await page.waitForTimeout(1000); //test was ending and switching at the same time so we wait a bit
         await expect(await page.getAttribute("html", "data-theme")).toBe(
           "dark",
         );

@@ -7,7 +7,8 @@ export function BlogList({ posts }: { posts: Post[] }) {
       {posts.length == 0 ? "0 posts" 
       : posts.map((post)=>( 
         <li key = {post.id}>
-          {post.active ? <BlogListItem post={post}/> : null}  {/* If post is active display blogListItem else nothing */}
+          {/*post.active ? <BlogListItem post={post}/> : null*/}  {/* If post is active display blogListItem else nothing */}
+          {<BlogListItem post={post}/>}
         </li>
       ))}
     </ul></div>;

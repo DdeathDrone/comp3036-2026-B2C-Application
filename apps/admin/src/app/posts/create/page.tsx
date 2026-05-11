@@ -1,4 +1,3 @@
-import { posts } from "@repo/db/data";
 import { PostForm } from "../../../components/PostForm";
 import { isLoggedIn } from "../../../utils/auth";
 import { LoginPage } from "../../../components/LoginPage";

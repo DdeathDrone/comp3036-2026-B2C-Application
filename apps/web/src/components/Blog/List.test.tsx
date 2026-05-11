@@ -1,4 +1,4 @@
-import type { Post } from "@repo/db/data";
+import type { Post, SeedPost } from "@repo/db/data";
 import { expect, test } from "vitest";
 import { render } from "vitest-browser-react";
 import { BlogList } from "./List";
@@ -12,7 +12,7 @@ export const post1: Post = {
   description: "Description of Hello World",
   id: 1,
   imageUrl: "https://example.com/image.jpg",
-  likes: 30,
+  likes: new Array(30),
   active: true,
   urlId: "hello-world",
   views: 200,
@@ -27,7 +27,7 @@ export const post2: Post = {
   description: "Descripcion de Hola Mundo",
   id: 2,
   imageUrl: "https://example.com/image.jpg",
-  likes: 550,
+  likes: new Array(550),
   active: true,
   urlId: "hola-mundo",
   views: 1000,
