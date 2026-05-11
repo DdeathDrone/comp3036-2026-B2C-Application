@@ -7,7 +7,7 @@ export default async function Home() {
   return (
     <AppLayout>
       {/*<Main posts={ await client.db.post.findMany({where:{active:true}, include: {likes: true}})} className={styles.main} />*/}
-      <Main className={styles.main} products={products}/>
+      <Main className={styles.main} products={products.filter((p) => p.active == true)}/>
     </AppLayout>
   );
 }

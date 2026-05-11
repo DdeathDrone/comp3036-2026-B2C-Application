@@ -14,7 +14,7 @@ export async function TagList({
   const postTags = await tags(products);
 
   return (
-    <LinkList title="Tags">
+    <LinkList title="Categories">
       {postTags.map((post) => (
         <SummaryItem
           key={post.name}
