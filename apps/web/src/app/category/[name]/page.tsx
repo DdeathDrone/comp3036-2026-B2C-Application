@@ -18,7 +18,7 @@ export default async function Page({
           .split(",").find((t)=> toUrlPath(t) == name) == undefined ? false : true
       )
   return (
-    <AppLayout>
+    <AppLayout selected={name}>
       <Main products={productsInCategory.length == 0 ? [] : productsInCategory} />
     </AppLayout>
   );

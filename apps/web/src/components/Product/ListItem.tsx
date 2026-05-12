@@ -15,13 +15,13 @@ export function ProductListItem({ product }: { product: Product }) {
   return (
     <article
       key={product.id}
-      className="flex flex-row gap-8"
+      className="pb-5"
       data-test-id={`blog-post-${product.id}`}
     >
       {/*<p>{date[2]?.value + " " + date[0]?.value + " " + date[4]?.value } </p>*/}
-      <p>{product.categories}</p>
-      <Image src={product.imageUrl} alt={"image"} width={400} height={300}/>
-      <Link href={`/post/${product.urlId}`}>{product.title}</Link>
+      <Link className="text-xl"href={`/post/${product.urlId}`}>{product.title}</Link>
+      <Image src={product.imageUrl} alt={"image"} width={300} height={300}/>
+      <p className="">{product.categories}</p>
       <p>{product.description}</p>
       <p>Price: ${product.price}</p>
       {/*<p>#{post.tags.replace(",", " #")}</p>

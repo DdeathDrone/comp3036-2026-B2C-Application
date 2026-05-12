@@ -7,16 +7,18 @@ import { ThemeProvider } from "../Themes/ThemeContext";
 export async function AppLayout({
   children,
   query,
-}: PropsWithChildren<{ query?: string }>) {
+  selected,
+}: PropsWithChildren<{ query?: string, selected?: string }>) {
   return (
-    <>
+    <div className="">
     <ThemeProvider>
-      <LeftMenu />
+      <TopMenu query={query} />
+      <LeftMenu selected={selected}/>
       <Content>
-        <TopMenu query={query} />
+        
         {children}
       </Content>
     </ThemeProvider>
-    </>
+    </div>
   );
 }

@@ -5,14 +5,14 @@ import { HistoryList } from "./HistoryList";
 import { TagList } from "./TagList";
 import Link from "next/link";
 
-export async function LeftMenu() {
+export async function LeftMenu({selected}: {selected?: string}) {
   //const posts = await client.db.post.findMany({include:{likes:true}});
   return (
-    <div>
+    <div className="fixed flex-1 inset-y-0 inset-left-0 bg-gray-400 space-x-10 w-30 text-black">
       {/* Sidebar component, swap this element with another sidebar if you like */}
       <Link className="text-2xl"href="/">Store</Link>
       <nav>
-        <ul role="list" className="flex flex-1 flex-col gap-y-7">
+        <ul role="list" className="">
           {/*
           <li>
             <CategoryList posts={posts} />
@@ -23,7 +23,7 @@ export async function LeftMenu() {
           </li>
           */}
           <li>
-            <TagList selectedTag="" products={products} />
+            <TagList selectedTag={selected} products={products} />
           </li>
           
           <li>Admin</li>
