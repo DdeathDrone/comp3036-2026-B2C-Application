@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 import { PropsWithChildren } from "react";
-import {getCookie, setCookie} from 'cookies-next'
+import {useGetCookie, useSetCookie,} from 'cookies-next'
 import { useRouter } from "next/navigation";
 
 
@@ -22,6 +22,8 @@ export const useTheme = () => {
 }
 export const ThemeProvider = ({children}: PropsWithChildren)=>{
   const router = useRouter();
+  const getCookie = useGetCookie();
+  const setCookie = useSetCookie();
 
   const [theme, setTheme] = useState<Theme>(getCookie("theme")?.toString() == undefined ? "light" : getCookie("theme")?.toString() == "light" ? "light" : "dark"); 
   const toggleTheme = () =>{
