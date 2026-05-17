@@ -100,3 +100,18 @@ export const products: Product[] = [
     active: false,
   },
 ];
+
+
+export type User = {
+  username: string;
+  userId: number;
+  password: string;
+  history: Product[];
+}
+
+export const user1 : User = {
+  userId: 1,
+  username: "user",
+  password: "123",
+  history: products,
+}

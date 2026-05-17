@@ -7,6 +7,7 @@ import { LoginButton } from "../Accounts/LoginButton";
 import { LogOutButton } from "../Accounts/LogOutButton";
 import { Search } from "./Search";
 import { cookies } from "next/headers";
+import { ProfileButton } from "../Accounts/ProfileButton";
 
 function debounce<T extends (...args: Any[]) => Any>(fn: T, delay = 300) {
   let timeoutId: Any;
@@ -24,7 +25,7 @@ export async function TopMenu({ query }: { query?: string }) {
       <div className="">
         <ThemeSwitch />
 
-        {userCookies.get("auth_token") == undefined ?  <LoginButton /> : <LogOutButton/>}
+        {userCookies.get("auth_token") == undefined ?  <LoginButton /> : <><ProfileButton/> <LogOutButton/> </>}
         
 
       </div>

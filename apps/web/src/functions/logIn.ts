@@ -11,7 +11,7 @@ export async function logIn(state: {success:boolean; error?: string}, formData :
    
     if(password == "123" && username =="user"){
         const sessionToken = jwt.sign(
-            {logged: true, role: "user", username: username},
+            {logged: true, role: "user", username: username, userid: 1},
             env.JWT_SECRET,
             {expiresIn: '15m'}
         );
