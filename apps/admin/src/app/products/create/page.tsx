@@ -1,4 +1,4 @@
-import { PostForm } from "../../../components/PostForm";
+import { ProductForm } from "../../../components/ProductForm";
 import { isLoggedIn } from "../../../utils/auth";
 import { LoginPage } from "../../../components/LoginPage";
 
@@ -8,6 +8,6 @@ export default async function Page() {
   if (!loggedIn) {
       return <><main>Sign in to your account</main> <LoginPage></LoginPage></>;
     } else {
-     return <><PostForm></PostForm></>
+     return <><ProductForm></ProductForm></>
     }
 }
