@@ -2,7 +2,7 @@ import type { Product } from "@repo/db/data";
 import { marked } from "marked";
 import Image from "next/image";
 import Link from "next/link";
-import { LikeButton } from "./LikeButton";
+import { CartButton } from "./CartButton";
 
 export async function ProductDetail({ product }: { product: Product }) {
   const content = await marked.parse(product.content);
@@ -27,6 +27,6 @@ export async function ProductDetail({ product }: { product: Product }) {
     <p>Price: {product.price}</p>
     {/*<p>#{product.tags.replace(",", " #")}</p>
     <p>{product.views+1} views {product.likes.length} likes</p>*/}
-    <LikeButton postid={product.id}></LikeButton>
+    <CartButton postid={product.id}></CartButton>
   </article>;
 }
