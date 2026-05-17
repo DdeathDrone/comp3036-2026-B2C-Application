@@ -25,7 +25,8 @@ export async function TopMenu({ query }: { query?: string }) {
       <div className="">
         <ThemeSwitch />
 
-        {userCookies.get("auth_token") == undefined ?  <LoginButton /> : <><ProfileButton/> <LogOutButton/> </>}
+        {userCookies.get("auth_token") == undefined ?  <LoginButton /> : <><ProfileButton/> <LogOutButton/></>}
+        <Link href={"/checkout"}>Checkout</Link>
         
 
       </div>
