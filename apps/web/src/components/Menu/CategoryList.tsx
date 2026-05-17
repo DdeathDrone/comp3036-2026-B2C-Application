@@ -21,7 +21,7 @@ export async function CategoryList({
           name={product.name}
           link={`/category/${toUrlPath(product.name)}`}
           isSelected={selectedTag == toUrlPath(product.name)}
-          title={"Category / " + product.name}
+          title={"Category / " + product.name.trim()}
           count={product.count}
         />
       ))}

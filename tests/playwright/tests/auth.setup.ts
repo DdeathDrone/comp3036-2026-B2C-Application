@@ -37,7 +37,7 @@ setup(
 
  setup(
    "authenticate assignment 3",
-   { tag: "@a3" },
+   { tag: "@a1" },
    async ({ playwright }) => {
      const authFile = ".auth/user.json";
 

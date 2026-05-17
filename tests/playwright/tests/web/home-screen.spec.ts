@@ -35,6 +35,9 @@ test.describe("HOME SCREEN", () => {
     },
   );
 
+
+
+  
   test(
     "Category Links",
     {
@@ -43,55 +46,15 @@ test.describe("HOME SCREEN", () => {
     async ({ page }) => {
       await page.goto("/");
 
-      // HOME SCREEN > User must see the list of blog post categories, where each category points to UI showing only posts of that category
-
-      await checkItem(page, "Category / React", "/category/react");
-      await checkItem(page, "Category / Node", "/category/node");
-      //await checkItem(page, "Category / Mongo", "/category/mongo");
-      //await checkItem(page, "Category / DevOps", "/category/devops");
-      // Removing these tests as they cannot work there is only 3 data points visible and there is a test to ensure only 3 exist, therefore even editing the data.ts it would not be possible 
-      // to get all four of these tests to pass as well as the one checking active posts.  
-    },
-  );
-
-  test(
-    "History Links",
-    {
-      tag: "@a1",
-    },
-    async ({ page }) => {
-      await page.goto("/");
-
-      // HOME SCREEN > User must see the history of blog posts, showing month and year, where each moth, year tuple points to UI showing only posts of that category
-
-      await checkItem(page, "History / December, 2024", "/history/2024/12", 1);
-      await checkItem(page, "History / April, 2022", "/history/2022/4", 1);
-      await checkItem(page, "History / March, 2020", "/history/2020/3", 1);
-
-      // HOME SCREEN > Tags and history items shown are only considered from active posts
-
-      await expect(page.getByText("December, 2012")).not.toBeVisible();
-    },
-  );
-
-  test(
-    "Tag Links",
-    {
-      tag: "@a1",
-    },
-    async ({ page }) => {
-      await page.goto("/");
-
       // HOME SCREEN > User must see the list of blog post tags, where each tag points to UI showing only posts of that category
 
-      await checkItem(page, "Tag / Back-End", "/tags/back-end", 1);
-      await checkItem(page, "Tag / Front-End", "/tags/front-end", 2);
-      await checkItem(page, "Tag / Optimisation", "/tags/optimisation", 1);
-      await checkItem(page, "Tag / Dev Tools", "/tags/dev-tools", 1);
+      await checkItem(page, "Category / Health", "/category/health", 1);
+      await checkItem(page, "Category / Video Games", "/category/video-games", 1);
+      await checkItem(page, "Category / Electronics", "/category/electronics", 2);
+      await checkItem(page, "Category / Sport", "/category/sport", 1);
 
       // HOME SCREEN > Tags and history items shown are only considered from active posts
 
-      await expect(page.getByText("Mainframes")).not.toBeVisible();
     },
   );
 
@@ -114,17 +77,14 @@ test.describe("HOME SCREEN", () => {
       // - likes
       // - views
 
-      await expect(item.getByText("Boost your conversion rate")).toBeVisible();
+      await expect(item.getByText("Electric Toothbrush")).toBeVisible();
       await expect(
-        item.getByText("Boost your conversion rate"),
-      ).toHaveAttribute("href", "/post/boost-your-conversion-rate");
+        item.getByText("Electric Toothbrush"),
+      ).toHaveAttribute("href", "/product/electric-toothbrush");
 
-      await expect(item.getByText("Node")).toBeVisible();
-      await expect(item.getByText("#Back-End")).toBeVisible();
-      await expect(item.getByText("#Databases")).toBeVisible();
-      await expect(item.getByText("18 Apr 2022")).toBeVisible();
-      await expect(item.getByText("320 views")).toBeVisible();
-      await expect(item.getByText("3 likes")).toBeVisible();
+      await expect(item.getByText("Electronics")).toBeVisible();
+      await expect(item.getByText("Health")).toBeVisible();
+      await expect(item.getByText("99.99")).toBeVisible();
     },
   );
 

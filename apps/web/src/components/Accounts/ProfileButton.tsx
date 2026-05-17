@@ -12,7 +12,11 @@ export async function ProfileButton(){
     if(!token){
         redirect("/");
     }
-    const user = await jwt.verify(token.value, env.JWT_SECRET);
-    console.log(user);
-    return <Link className="pl-5 pr-5"href={`/profile/${user.userid}`}>{user.username}</Link>
+    try{
+        const user = await jwt.verify(token.value, env.JWT_SECRET) as jwt.JwtPayload; //TODO: Move to API when implementing backend
+        return <Link className="pl-5 pr-5"href={`/profile/${user.userid}`}>{user.username}</Link>
+    }
+    catch (err){
+        console.error('Token invalid');
+    }
 }

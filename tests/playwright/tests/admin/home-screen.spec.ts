@@ -9,7 +9,7 @@ test.describe("ADMIN HOME SCREEN", () => {
   test(
     "Shows login screen",
     {
-      tag: "@a2",
+      tag: "@a1",
     },
     async ({ page }) => {
       await page.goto("/");
@@ -25,7 +25,7 @@ test.describe("ADMIN HOME SCREEN", () => {
   test(
     "Can login",
     {
-      tag: "@a2",
+      tag: "@a1",
     },
     async ({ page }) => {
       await page.goto("/");
@@ -34,7 +34,7 @@ test.describe("ADMIN HOME SCREEN", () => {
       await page.getByLabel("Password", { exact: true }).fill("123");
       await page.getByText("Sign In", { exact: true }).click();
 
-      await expect(page.getByText("Admin of Full Stack Blog")).toBeVisible();
+      await expect(page.getByText("Admin of B2C Application")).toBeVisible();
 
       // HOME SCREEN > Use a cookie to remember the signed-in state.
       const cookies = await page.context().cookies();
@@ -57,14 +57,14 @@ test.describe("ADMIN HOME SCREEN", () => {
   test(
     "Shows home screen to authorised user",
     {
-      tag: "@a2",
+      tag: "@a1",
     },
     async ({ userPage }) => {
       await userPage.goto("/");
 
       // shows title
       await expect(
-        userPage.getByText("Admin of Full Stack Blog", { exact: true }),
+        userPage.getByText("Admin of B2C Application", { exact: true }),
       ).toBeVisible();
 
       // LIST SCREEN > Article list is only accessible to logged-in users.

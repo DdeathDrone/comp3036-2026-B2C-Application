@@ -24,6 +24,7 @@ export async function ProductDetail({ product }: { product: Product }) {
      <p> {product.categories}</p>
     <Image src={product.imageUrl} alt={"image"} width={500} height={400}/>
     <div data-test-id="content-markdown" dangerouslySetInnerHTML={{ __html: content}}></div>
+    <p>Price: {product.price}</p>
     {/*<p>#{product.tags.replace(",", " #")}</p>
     <p>{product.views+1} views {product.likes.length} likes</p>*/}
     <LikeButton postid={product.id}></LikeButton>

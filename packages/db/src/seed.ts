@@ -2,6 +2,7 @@ import { client } from "./client.js";
 import { posts } from "./data.js";
 
 export async function seed() {
+  /*
    console.log("🌱 Seeding data");
    await client.db.like.deleteMany();
    await client.db.post.deleteMany();
@@ -34,3 +35,4 @@ export async function seed() {
      }
    }
 }
+*/

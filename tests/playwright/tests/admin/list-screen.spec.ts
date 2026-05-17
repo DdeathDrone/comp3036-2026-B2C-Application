@@ -13,7 +13,7 @@ test.describe("ADMIN LIST SCREEN", () => {
   test(
     "Show all posts",
     {
-      tag: "@a2",
+      tag: "@a1",
     },
     async ({ userPage }) => {
       await userPage.goto("/");
@@ -25,21 +25,21 @@ test.describe("ADMIN LIST SCREEN", () => {
   test(
     "Filter by content",
     {
-      tag: "@a2",
+      tag: "@a1",
     },
     async ({ userPage }) => {
       await userPage.goto("/");
 
       // LIST SCREEN > On the top is a filter screen that allows to filter posts by Title or content
-      await userPage.getByLabel("Filter by Content:").fill("Boost");
+      await userPage.getByLabel("Filter by Content:").fill("Switch");
       await expect(await userPage.locator("article").count()).toBe(1);
       await expect(
-        userPage.getByText("Boost your conversion rate"),
+        userPage.getByText("Nintendo Switch 2"),
       ).toBeVisible();
 
       await userPage.getByLabel("Filter by Content:").fill("post2");
       await expect(
-        userPage.getByText("Better front ends with Fatboy Slim"),
+        userPage.getByText("BasketBall"),
       ).toBeVisible();
 
       await userPage.getByLabel("Filter by Content:").clear();
@@ -48,30 +48,30 @@ test.describe("ADMIN LIST SCREEN", () => {
   );
 
   test(
-    "Filter by tag",
+    "Filter by Category",
     {
-      tag: "@a2",
+      tag: "@a1",
     },
     async ({ userPage }) => {
       await userPage.goto("/");
 
       // LIST SCREEN > On the top is a filter screen that allows to filter posts by tags
-      await userPage.getByLabel("Filter by Tag:").fill("Front");
+      await userPage.getByLabel("Filter by Category:").fill("Electronics");
       await expect(await userPage.locator("article").count()).toBe(2);
       await expect(
-        userPage.getByText("Better front ends with Fatboy Slim"),
+        userPage.getByText("Electric Toothbrush"),
       ).toBeVisible();
       await expect(
-        userPage.getByText("No front end framework is the best"),
+        userPage.getByText("Nintendo Switch 2"),
       ).toBeVisible();
-      await userPage.getByLabel("Filter by Tag:").clear();
+      await userPage.getByLabel("Filter by Category:").clear();
     },
   );
 
   test(
     "Filter by date",
     {
-      tag: "@a2",
+      tag: "@a1",
     },
     async ({ userPage }) => {
       await userPage.goto("/");
@@ -82,10 +82,10 @@ test.describe("ADMIN LIST SCREEN", () => {
         .pressSequentially("01012022");
       await expect(await userPage.locator("article").count()).toBe(2);
       await expect(
-        userPage.getByText("Boost your conversion rate"),
+        userPage.getByText("Electric Toothbrush"),
       ).toBeVisible();
       await expect(
-        userPage.getByText("No front end framework is the best"),
+        userPage.getByText("Nintendo Switch 2"),
       ).toBeVisible();
       await userPage.getByLabel("Filter by Date Created:").clear();
     },
@@ -94,19 +94,19 @@ test.describe("ADMIN LIST SCREEN", () => {
   test(
     "Combine Filters",
     {
-      tag: "@a2",
+      tag: "@a1",
     },
     async ({ userPage }) => {
       await userPage.goto("/");
 
       // LIST SCREEN > On the top is a filter screen that allows to filter by visibility
-      await userPage.getByLabel("Filter by Tag:").fill("Front");
+      await userPage.getByLabel("Filter by Category:").fill("Electronics");
       await userPage
         .getByLabel("Filter by Date Created:")
-        .pressSequentially("01012022");
+        .pressSequentially("01012023");
       await expect(await userPage.locator("article").count()).toBe(1);
       await expect(
-        userPage.getByText("No front end framework is the best"),
+        userPage.getByText("Nintendo Switch 2"),
       ).toBeVisible();
     },
   );
@@ -114,7 +114,7 @@ test.describe("ADMIN LIST SCREEN", () => {
   test(
     "Sort items",
     {
-      tag: "@a2",
+      tag: "@a1",
     },
     async ({ userPage }) => {
       await userPage.goto("/");
@@ -126,16 +126,16 @@ test.describe("ADMIN LIST SCREEN", () => {
       let articles = await userPage.locator("article").all();
 
       expect(await articles[0].innerText()).toContain(
-        "Better front ends with Fatboy Slim",
+        "Basketball",
       );
       expect(await articles[1].innerText()).toContain(
-        "Boost your conversion rate",
+        "Clown Costume",
       );
       expect(await articles[2].innerText()).toContain(
-        "No front end framework is the best",
+        "Electric Toothbrush",
       );
       expect(await articles[3].innerText()).toContain(
-        "Visual Basic is the future",
+        "Nintendo Switch 2",
       );
 
       // title-desc
@@ -143,50 +143,50 @@ test.describe("ADMIN LIST SCREEN", () => {
       articles = await userPage.locator("article").all();
 
       expect(await articles[3].innerText()).toContain(
-        "Better front ends with Fatboy Slim",
+        "Basketball",
       );
       expect(await articles[2].innerText()).toContain(
-        "Boost your conversion rate",
+        "Clown Costume",
       );
       expect(await articles[1].innerText()).toContain(
-        "No front end framework is the best",
+        "Electric Toothbrush",
       );
       expect(await articles[0].innerText()).toContain(
-        "Visual Basic is the future",
+        "Nintendo Switch 2",
       );
 
-      // title-asc
+      // date-asc
       await userPage.getByLabel("Sort By:").selectOption("date-asc");
       articles = await userPage.locator("article").all();
 
       expect(await articles[1].innerText()).toContain(
-        "Better front ends with Fatboy Slim",
+        "Basketball",
       );
       expect(await articles[2].innerText()).toContain(
-        "Boost your conversion rate",
+        "Electric Toothbrush",
       );
       expect(await articles[3].innerText()).toContain(
-        "No front end framework is the best",
+        "Nintendo Switch 2",
       );
       expect(await articles[0].innerText()).toContain(
-        "Visual Basic is the future",
+        "Clown Costume",
       );
 
-      // title-desc
+      // date-desc
       await userPage.getByLabel("Sort By:").selectOption("date-desc");
       articles = await userPage.locator("article").all();
 
       expect(await articles[2].innerText()).toContain(
-        "Better front ends with Fatboy Slim",
+        "Basketball",
       );
       expect(await articles[1].innerText()).toContain(
-        "Boost your conversion rate",
+        "Electric Toothbrush",
       );
       expect(await articles[0].innerText()).toContain(
-        "No front end framework is the best",
+        "Nintendo Switch 2",
       );
       expect(await articles[3].innerText()).toContain(
-        "Visual Basic is the future",
+        "Clown Costume",
       );
     },
   );
@@ -194,7 +194,7 @@ test.describe("ADMIN LIST SCREEN", () => {
   test(
     "List items",
     {
-      tag: "@a2",
+      tag: "@a1",
     },
     async ({ userPage }) => {
       await userPage.goto("/");
@@ -202,15 +202,15 @@ test.describe("ADMIN LIST SCREEN", () => {
       // LIST SCREEN > The list post item displays the image, title of the post and metadata
       const article = await userPage.locator("article").first();
       await expect(
-        article.getByText("No front end framework is the best"),
+        article.getByText("Nintendo Switch 2"),
       ).toBeVisible();
       await expect(article.locator("img").first()).toBeVisible();
 
       // LIST SCREEN > The list post items display metadata such as category, tags, and "active" status
-      await expect(article.getByText("#Front-End, #Dev Tools")).toBeVisible();
-      await expect(article.getByText("Posted on Dec 16, 2024")).toBeVisible();
-      await expect(article.getByText("React")).toBeVisible();
-      await expect(article.getByText("Active")).toBeVisible();
+      await expect(article.getByText("Electronics, Video Games")).toBeVisible();
+      await expect(article.getByText("Product added on Dec 16, 2024")).toBeVisible();
+      await expect(article.getByText("300")).toBeVisible();
+      await expect(article.getByText("750")).toBeVisible();
 
       // LIST SCREEN > The active status is a button that, on click, just displays a message
       await expect(article.locator('button:has-text("Active")')).toBeVisible();
@@ -220,15 +220,15 @@ test.describe("ADMIN LIST SCREEN", () => {
   test(
     "Move to detail screen",
     {
-      tag: "@a2",
+      tag: "@a1",
     },
     async ({ userPage }) => {
       await userPage.goto("/");
 
       // LIST SCREEN > Clicking on the title takes the user to the MODIFY SCREEN, allowing the user to modify the current post
-      await userPage.getByText("No front end framework is the best").click();
+      await userPage.getByText("Nintendo Switch 2").click();
       await expect(userPage).toHaveURL(
-        "/post/no-front-end-framework-is-the-best",
+        "/product/nintendo-switch-2",
       );
     },
   );
@@ -236,24 +236,24 @@ test.describe("ADMIN LIST SCREEN", () => {
   test(
     "Move to create post screen",
     {
-      tag: "@a2",
+      tag: "@a1",
     },
     async ({ userPage }) => {
       await userPage.goto("/");
 
       // LIST SCREEN > There is a button to create new posts
-      await expect(userPage.getByText("Create Post")).toBeVisible();
+      await expect(userPage.getByText("Create Product")).toBeVisible();
 
       // LIST SCREEN > Clicking on the "Create Post" button takes the user to the CREATE SCREEN
-      await userPage.locator('a:has-text("Create Post")').click();
-      await expect(userPage).toHaveURL("/posts/create");
+      await userPage.locator('a:has-text("Create Product")').click();
+      await expect(userPage).toHaveURL("/products/create");
     },
   );
 
   test(
     "Can activate / deactivate posts",
     {
-      tag: "@a3",
+      tag: "@a2",
     },
     async ({ userPage }) => {
       await seed();

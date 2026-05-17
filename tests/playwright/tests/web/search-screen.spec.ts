@@ -7,7 +7,7 @@ test.describe("SEARCH SCREEN", () => {
       tag: "@a1",
     },
     async ({ page }) => {
-      await page.goto("/search?q=Fat");
+      await page.goto("/search?q=Bas");
 
       // SEARCH SCREEN > Displays results based on search string stored in the query string (e.g. /search?q=Fat)
 
@@ -18,7 +18,7 @@ test.describe("SEARCH SCREEN", () => {
 
       await expect(page.getByTestId("blog-post-2")).toBeVisible();
       await expect(
-        page.getByText("Better front ends with Fatboy Slim"),
+        page.getByText("Basketball"),
       ).toBeVisible();
     },
   );
@@ -29,21 +29,21 @@ test.describe("SEARCH SCREEN", () => {
       tag: "@a1",
     },
     async ({ page }) => {
-      await page.goto("/search?q=front");
+      await page.goto("/search?q=o");
 
       // SEARCH SCREEN > Displays results based on search string stored in the query string (e.g. /search?q=Fat)
 
       const articles = await page.locator('[data-test-id^="blog-post-"]');
       await expect(articles).toHaveCount(2);
 
-      await expect(page.getByTestId("blog-post-2")).toBeVisible();
+      await expect(page.getByTestId("blog-post-1")).toBeVisible();
       await expect(
-        page.getByText("Better front ends with Fatboy Slim"),
+        page.getByText("Electric Toothbrush"),
       ).toBeVisible();
 
       await expect(page.getByTestId("blog-post-3")).toBeVisible();
       await expect(
-        page.getByText("No front end framework is the best"),
+        page.getByText("Nintendo Switch 2"),
       ).toBeVisible();
     },
   );
@@ -61,7 +61,7 @@ test.describe("SEARCH SCREEN", () => {
       const articles = await page.locator('[data-test-id^="blog-post-"]');
       await expect(articles).toHaveCount(0);
 
-      await expect(page.getByText("0 Posts")).toBeVisible();
+      await expect(page.getByText("0 Products")).toBeVisible();
     },
   );
 });

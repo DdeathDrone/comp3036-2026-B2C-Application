@@ -17,7 +17,7 @@ export default async function Home() {
   } else {
     return (
       <>
-      <h1 className="text-2xl">Admin of Full Stack Blog</h1>
+      <h1 className="text-2xl">Admin of B2C Application</h1>
       <main className={styles.main}>
         <Filters products={products}/>
         

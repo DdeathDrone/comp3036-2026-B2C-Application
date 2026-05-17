@@ -7,7 +7,7 @@ export async function updateProduct(prevState: {success: boolean, error?: string
     const content = formData.get('Content') as string;
     //const tags = formData.get('Tags') as string;
     const imageUrl = formData.get('ImageUrl') as string;
-    const category = formData.get('Category') as string;
+    const category = formData.get('Categories') as string;
 
     if(title.length == 0 ){
         return {success:false, error:"Title is required", productId:prevState.productId, urlId: prevState.urlId}

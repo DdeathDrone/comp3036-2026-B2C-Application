@@ -12,21 +12,21 @@ test.describe("CATEGORY SCREEN", () => {
       tag: "@a1",
     },
     async ({ page }) => {
-      await page.goto("/category/react");
+      await page.goto("/category/electronics");
 
       // CATEGORY SCREEN > Displays results based on category from url (e.g. /category/react)
 
       const articles = await page.locator('[data-test-id^="blog-post-"]');
       await expect(articles).toHaveCount(2);
 
-      await expect(page.getByTestId("blog-post-2")).toBeVisible();
+      await expect(page.getByTestId("blog-post-1")).toBeVisible();
       await expect(
-        page.getByText("Better front ends with Fatboy Slim"),
+        page.getByText("Electric Toothbrush"),
       ).toBeVisible();
 
       await expect(page.getByTestId("blog-post-3")).toBeVisible();
       await expect(
-        page.getByText("No front end framework is the best"),
+        page.getByText("Nintendo Switch 2"),
       ).toBeVisible();
     },
   );
@@ -44,7 +44,7 @@ test.describe("CATEGORY SCREEN", () => {
       const articles = await page.locator('[data-test-id^="blog-post-"]');
       await expect(articles).toHaveCount(0);
 
-      await expect(page.getByText("0 Posts")).toBeVisible();
+      await expect(page.getByText("0 Products")).toBeVisible();
     },
   );
 });

@@ -9,10 +9,10 @@ test.describe("ADMIN UPDATE SCREEN", () => {
   test(
     "Authorisation",
     {
-      tag: "@a2",
+      tag: "@a1",
     },
     async ({ page }) => {
-      await page.goto("/post/no-front-end-framework-is-the-best");
+      await page.goto("/product/nintendo-switch-2");
 
       // UPDATE SCREEN > Shows login screen if not logged
       await expect(
@@ -24,10 +24,10 @@ test.describe("ADMIN UPDATE SCREEN", () => {
   test(
     "Update post form",
     {
-      tag: "@a2",
+      tag: "@a1",
     },
     async ({ userPage }) => {
-      await userPage.goto("/post/no-front-end-framework-is-the-best");
+      await userPage.goto("/product/nintendo-switch-2");
 
       const saveButton = await userPage.getByText("Save");
 
@@ -105,16 +105,16 @@ test.describe("ADMIN UPDATE SCREEN", () => {
 
       // UPDATE SCREEN > Tag Lists
 
-      await userPage.getByLabel("Tags").clear();
+      await userPage.getByLabel("Categories").clear();
       await saveButton.click();
 
       await expect(
-        userPage.getByText("At least one tag is required"),
+        userPage.getByText("At least one category is required"),
       ).toBeVisible();
-      await userPage.getByLabel("Tags").fill("Tag");
+      await userPage.getByLabel("Categories").fill("Tag");
       await saveButton.click();
       await expect(
-        userPage.getByText("At least one tag is required"),
+        userPage.getByText("At least one category is required"),
       ).not.toBeVisible();
     },
   );
@@ -201,10 +201,10 @@ test.describe("ADMIN UPDATE SCREEN", () => {
   test(
     "Show preview",
     {
-      tag: "@a2",
+      tag: "@a1",
     },
     async ({ userPage }) => {
-      await userPage.goto("/post/no-front-end-framework-is-the-best");
+      await userPage.goto("/product/nintendo-switch-2");
 
       // UPDATE SCREEN > Under the Description is a "Preview" button that replaces the text area with a rendered markdown string and changes the title to "Close Preview".
       await userPage.getByText("Preview").focus();
@@ -220,10 +220,10 @@ test.describe("ADMIN UPDATE SCREEN", () => {
   test(
     "Restore preview",
     {
-      tag: "@a2",
+      tag: "@a1",
     },
     async ({ userPage }) => {
-      await userPage.goto("/post/no-front-end-framework-is-the-best");
+      await userPage.goto("/product/nintendo-switch-2");
 
       // UPDATE SCREEN > When the preview is closed, the cursor must be in the same position as before opening the preview.
 
@@ -255,10 +255,10 @@ test.describe("ADMIN UPDATE SCREEN", () => {
   test(
     "Image Preview",
     {
-      tag: "@a2",
+      tag: "@a1",
     },
     async ({ userPage }) => {
-      await userPage.goto("/post/no-front-end-framework-is-the-best");
+      await userPage.goto("/product/nintendo-switch-2");
 
       // UPDATE SCREEN > Under the image input is an image preview;
 
@@ -274,10 +274,10 @@ test.describe("ADMIN UPDATE SCREEN", () => {
   test(
     "Save Button",
     {
-      tag: "@a2",
+      tag: "@a1",
     },
     async ({ userPage }) => {
-      await userPage.goto("/post/no-front-end-framework-is-the-best");
+      await userPage.goto("/product/nintendo-switch-2");
 
       // UPDATE SCREEN > User can click on the "Save" button that displays an error ui if one of the fields is not specified or valid.
 
