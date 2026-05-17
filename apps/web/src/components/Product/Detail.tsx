@@ -18,8 +18,8 @@ export async function ProductDetail({ product }: { product: Product }) {
     }
   ).formatToParts(product.date);*/
 
-  return <article data-test-id={`blog-post-${product.id}`}> {/*TODO: adjust test id */}  
-    <Link href={`/post/${product.urlId}`}>{product.title}</Link>
+  return <article className="pt-5"data-test-id={`blog-post-${product.id}`}> {/*TODO: adjust test id */}  
+    <Link className="text-2xl" href={`/product/${product.urlId}`}>{product.title}</Link>
      {/*<p>{product[2]?.value + " " + product[0]?.value + " " + product[4]?.value } </p> */}
      <p> {product.categories}</p>
     <Image src={product.imageUrl} alt={"image"} width={500} height={400}/>

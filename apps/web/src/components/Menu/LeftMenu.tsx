@@ -1,8 +1,6 @@
 import { products } from "@repo/db/data";
 import { client } from "@repo/db/client";
 import { CategoryList } from "./CategoryList";
-import { HistoryList } from "./HistoryList";
-import { TagList } from "./TagList";
 import Link from "next/link";
 
 export async function LeftMenu({selected}: {selected?: string}) {
@@ -13,17 +11,8 @@ export async function LeftMenu({selected}: {selected?: string}) {
       <Link className="text-2xl"href="/">Store</Link>
       <nav>
         <ul role="list" className="">
-          {/*
           <li>
-            <CategoryList posts={posts} />
-          </li>
-          
-          <li>
-            <HistoryList selectedYear="" selectedMonth="" posts={posts} />
-          </li>
-          */}
-          <li>
-            <TagList selectedTag={selected} products={products} />
+            <CategoryList selectedTag={selected} products={products} />
           </li>
           
           <li>Admin</li>

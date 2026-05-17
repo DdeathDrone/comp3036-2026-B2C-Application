@@ -15,5 +15,5 @@ export default async function Page({
   const postDetails = products.find((p)=>(p.urlId == urlId))
   //const postDetails = await client.db.post.findUnique({where: {urlId: urlId, active:true}, include: {likes: true}});
 
-  return <AppLayout>{postDetails == undefined ? "Article Not found" :<ProductDetail product={postDetails}/>} </AppLayout>;
+  return <AppLayout>{postDetails == undefined ? "Article Not found" :<ProductDetail  product={postDetails}/>} </AppLayout>;
 }

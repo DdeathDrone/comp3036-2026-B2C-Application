@@ -19,7 +19,7 @@ export function ProductListItem({ product }: { product: Product }) {
       data-test-id={`blog-post-${product.id}`}
     >
       {/*<p>{date[2]?.value + " " + date[0]?.value + " " + date[4]?.value } </p>*/}
-      <Link className="text-xl"href={`/post/${product.urlId}`}>{product.title}</Link>
+      <Link className="text-xl"href={`/product/${product.urlId}`}>{product.title}</Link>
       <Image src={product.imageUrl} alt={"image"} width={300} height={300}/>
       <p className="">{product.categories}</p>
       <p>{product.description}</p>

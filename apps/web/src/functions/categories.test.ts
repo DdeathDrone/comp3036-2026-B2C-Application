@@ -1,28 +1,24 @@
 import { expect, test } from "vitest";
 import { categories } from "./categories";
 
-test("returns empty array of categories if no posts are provides", async () => {
+test("returns empty array if no posts are provides", async () => {
   await expect(await categories([])).toEqual([]);
 });
 
-test("returns categories with count", async () => {
+test("returns tags with count", async () => {
   await expect(
     await categories([
-      { category: "B", active: true },
-      { category: "A", active: true },
-      { category: "D", active: true },
+      { categories: "A,B", active: true },
+      { categories: "A,C", active: true },
+      { categories: "C", active: true },
       {
-        category: "D",
+        categories: "D",
         active: false,
-      },
-      {
-        category: "D",
-        active: true,
       },
     ]),
   ).toEqual([
-    { name: "A", count: 1 },
+    { name: "A", count: 2 },
     { name: "B", count: 1 },
-    { name: "D", count: 2 },
+    { name: "C", count: 2 },
   ]);
 });

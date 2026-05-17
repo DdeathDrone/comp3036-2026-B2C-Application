@@ -1,25 +1,30 @@
-import { categories } from "@/functions/categories";
-import type { Post } from "@repo/db/data";
-import { toUrlPath } from "@repo/utils/url";
-import { SummaryItem } from "./SummaryItem";
+import { type Product } from "@repo/db/data";
+import { categories } from "../../functions/categories";
 import { LinkList } from "./LinkList";
+import { SummaryItem } from "./SummaryItem";
+import { toUrlPath } from "@repo/utils/url";
 
-export function CategoryList({ posts }: { posts: Post[] }) {
-  // TODO: Implement proper category list
+export async function CategoryList({
+  selectedTag,
+  products,
+}: {
+  selectedTag?: string;
+  products: Product[];
+}) {
+  const productCategories = await categories(products);
+
   return (
-    <>
     <LinkList title="Categories">
-      {categories(posts).map((item) => (
+      {productCategories.map((product) => (
         <SummaryItem
-          key={item.name}
-          count={item.count}
-          name={item.name}
-          isSelected={false}
-          link={`/category/${toUrlPath(item.name)}`}
-          title={"Category / " + item.name} 
+          key={product.name}
+          name={product.name}
+          link={`/category/${toUrlPath(product.name)}`}
+          isSelected={selectedTag == toUrlPath(product.name)}
+          title={"Category / " + product.name}
+          count={product.count}
         />
       ))}
-      </LinkList>
-    </>
+    </LinkList>
   );
 }
