@@ -17,10 +17,11 @@ export function ProductListItem({ product }: { product: Product }) {
       key={product.id}
       className="pb-5"
       data-test-id={`blog-post-${product.id}`}
+      aria-label={product.title}
     >
       {/*<p>{date[2]?.value + " " + date[0]?.value + " " + date[4]?.value } </p>*/}
       <Link className="text-xl"href={`/product/${product.urlId}`}>{product.title}</Link>
-      <Image src={product.imageUrl} alt={"image"} width={300} height={300}/>
+      <Image src={product.imageUrl} alt={product.title} width={300} height={300}/>
       <p className="">{product.categories}</p>
       <p>{product.description}</p>
       <p>Price: ${product.price}</p>

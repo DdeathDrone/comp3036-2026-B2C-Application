@@ -103,16 +103,16 @@ export function Filters({products} : {products : Product[]}){
           </select>
 
           <label htmlFor="ContentFilter">Filter by Content:</label> 
-          <input className="border ml-2 mr-2" type="text" name="ContentFilter" id="ContentFilter" onChange={(e) => dispatch({type: "FILTER", event: e, productInit: products})}></input>
+          <input className="border ml-2 mr-2" type="text" name="ContentFilter" id="ContentFilter" aria-label="Filter by Content" onChange={(e) => dispatch({type: "FILTER", event: e, productInit: products})}></input>
 
           <label htmlFor="CategoryFilter">Filter by Category:</label>
-          <input className="border ml-2 mr-2" type="text" name="CategoryFilter" id="CategoryFilter" onChange={(e) => dispatch({type: "FILTER", event: e, productInit: products})}></input>
+          <input className="border ml-2 mr-2" type="text" name="CategoryFilter" id="CategoryFilter" aria-label="Filter by Category" onChange={(e) => dispatch({type: "FILTER", event: e, productInit: products})}></input>
 
           <label htmlFor="DateFilter">Filter by Date Created:</label>
-          <input className="border ml-2 mr-2" type="date" name="DateFilter"  id="DateFilter"  onChange={(e) => dispatch({type: "FILTER", event: e, productInit: products})}></input>
+          <input className="border ml-2 mr-2" type="date" name="DateFilter"  id="DateFilter" aria-label="Filter by Date Created" onChange={(e) => dispatch({type: "FILTER", event: e, productInit: products})}></input>
 
           <label htmlFor="ActiveFilter">Show Only Active Products:</label>
-          <input className="ml-2 mt-1"type="checkbox"  id="ActiveFilter" name="ActiveFilter" onChange={(e) => dispatch({type: "FILTER", event: e, productInit: products})}></input>
+          <input className="ml-2 mt-1"type="checkbox"  id="ActiveFilter" name="ActiveFilter" aria-label="Show Only Ative Products" onChange={(e) => dispatch({type: "FILTER", event: e, productInit: products})}></input>
 
           <button className="border ml-2 mr-2 px-2" onClick={(e) => dispatch({type: "CLEAR"})}>Clear Filters</button>
         </form>
