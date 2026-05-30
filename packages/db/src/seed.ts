@@ -1,38 +1,53 @@
 import { client } from "./client.js";
-import { posts } from "./data.js";
+import { products, history, users } from "./data.js";
 
 export async function seed() {
-  /*
+  
    console.log("🌱 Seeding data");
-   await client.db.like.deleteMany();
-   await client.db.post.deleteMany();
-   for (const post of posts) {
-     await client.db.post.create({
+   await client.db.history.deleteMany();
+   await client.db.user.deleteMany();
+   await client.db.product.deleteMany();
+   for (const p of products) {
+     await client.db.product.create({
        data: {
-         title: post.title,
-         content: post.content,
-         category: post.category,
-         description: post.description,
-         imageUrl: post.imageUrl,
-         tags: post.tags
+         title: p.title,
+         content: p.content,
+         description: p.description,
+         imageUrl: p.imageUrl,
+         categories: p.categories
            .split(",")
            .map((p) => p.trim())
            .join(","),
-         urlId: post.urlId,
-         active: post.active,
-         date: post.date,
-         id: post.id,
-         views: post.views,
+         urlId: p.urlId,
+         active: p.active,
+         date: p.date,
+         id: p.id,
+         stock: p.stock,
+         price: p.price,
        },
      });
-     for (let i = 0; i < post.likes; i++) {
-       await client.db.like.create({
+     
+     
+   }
+   for(const u of users){
+      await client.db.user.create({
+        data: {
+          userId: u.userId,
+          username: u.username,
+          password: u.password,
+          email: u.email,
+          role: u.role, 
+        }
+      })
+      
+    }
+    for (const h of history) {
+       await client.db.history.create({
          data: {
-           postId: post.id,
-           userIP: `192.168.100.${i}`,
+           productId: h.productId,
+           userId: h.userId,
+           orderDate: h.orderDate,
          },
        });
      }
-   }
 }
-*/

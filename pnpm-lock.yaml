@@ -222,6 +222,12 @@ importers:
       '@types/node':
         specifier: ^22.13.1
         version: 22.13.1
+      '@types/pg':
+        specifier: ^8.20.0
+        version: 8.20.0
+      prisma:
+        specifier: ^6.3.1
+        version: 6.3.1(typescript@5.7.3)
       vitest:
         specifier: ^3.0.4
         version: 3.0.4(@types/node@22.13.1)(@vitest/browser@3.0.4)(jiti@2.4.2)(lightningcss@1.29.1)(msw@2.7.0(@types/node@22.13.1)(typescript@5.7.3))

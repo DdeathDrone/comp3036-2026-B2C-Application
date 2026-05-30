@@ -106,12 +106,35 @@ export type User = {
   username: string;
   userId: number;
   password: string;
-  history: Product[];
+  email: string;
+  role: string;
+  history: number;
 }
 
-export const user1 : User = {
+export type History = {
+  productId: number;
+  userId: number;
+  orderDate: Date;
+}
+
+export const history: History[] = [
+  {
+  productId:1,
+  userId:1,
+  orderDate: new Date("May 16, 2026")
+  },
+  {
+  productId:3,
+  userId:1,
+  orderDate: new Date("May 16, 2026")
+  }
+]
+
+export const users : User[] = [{
   userId: 1,
   username: "user",
   password: "123",
-  history: products,
-}
+  email: "user@email.com",
+  role: "user",
+  history: 2,
+}]
