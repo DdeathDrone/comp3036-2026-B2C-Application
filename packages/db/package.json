@@ -31,7 +31,11 @@
     }
   },
   "dependencies": {
-    "@repo/env": "workspace:*"
+    "@prisma/adapter-pg": "^7.8.0",
+    "@prisma/client": "^6.3.1",
+    "@repo/env": "workspace:*",
+    "dotenv": "^16.4.5",
+    "pg": "^8.21.0"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
