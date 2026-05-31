@@ -160,7 +160,7 @@ export const orderItems: OrderItem[] = [
 export const users : User[] = [{
   userId: 1,
   username: "user",
-  password: "123",
+  password: "$2b$10$qxMYCEiC1.e5L5Z11CISG.3ANXSGyCDiOUWW1iJQ/s.eN9pYrzrvG",
   email: "user@email.com",
   role: "user",
   Order: orders,

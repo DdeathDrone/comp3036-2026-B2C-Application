@@ -23,6 +23,7 @@ export async function POST(req: NextRequest){
     }
         */
     const password = await req.json();
+    console.log(adminPass);
 
     if(req.headers.get("Content-Type") == "multipart/form-data" ? !await validate(password) : !await validate(password.password)){
         return NextResponse.json({message: 'Password is incorrect'}, {status: 401});
