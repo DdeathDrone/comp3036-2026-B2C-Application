@@ -32,7 +32,7 @@ model User {
   userId Int @id @default(autoincrement())
   password String
   username String
-  email String
+  email String @unique
   role String
   Order Order[]
 }
