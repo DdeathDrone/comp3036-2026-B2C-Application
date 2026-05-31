@@ -1,5 +1,5 @@
-import { PrismaClient } from "@prisma/client"
-import { PrismaPg } from "@prisma/adapter-pg"
+import { PrismaClient } from "@prisma/client";
+//import { PrismaPg } from "@prisma/adapter-pg"
 import { env } from "@repo/env/web";
 
 declare global {
@@ -13,7 +13,7 @@ export const createClient = () => {
 
   const URL = env.DATABASE_URL;
 
-  const adapter = new PrismaPg({connectionString: URL})
+  //const adapter = new PrismaPg({connectionString: URL})
   const prisma = new PrismaClient({datasourceUrl: URL});
 
   console.log("Connected to database");

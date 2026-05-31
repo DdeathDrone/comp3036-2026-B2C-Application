@@ -1,10 +1,11 @@
 import { client } from "./client.js";
-import { products, history, users } from "./data.js";
+import { products, orders, users, orderItems } from "./data.js";
 
 export async function seed() {
   
    console.log("🌱 Seeding data");
-   await client.db.history.deleteMany();
+   await client.db.orderItem.deleteMany();
+   await client.db.order.deleteMany();
    await client.db.user.deleteMany();
    await client.db.product.deleteMany();
    for (const p of products) {
@@ -41,13 +42,23 @@ export async function seed() {
       })
       
     }
-    for (const h of history) {
-       await client.db.history.create({
+    for (const o of orders) {
+       await client.db.order.create({
          data: {
-           productId: h.productId,
-           userId: h.userId,
-           orderDate: h.orderDate,
+           orderId: o.orderId,
+           userId: o.userId,
+           orderDate: o.orderDate,
+           totalCost: o.totalCost,
          },
        });
-     }
+    }
+    for (const oi of orderItems) {
+      await client.db.orderItem.create({
+        data: {
+          orderId: oi.orderId,
+          productId: oi.productId,
+          ammount: oi.ammount,
+        }
+      })
+    }
 }

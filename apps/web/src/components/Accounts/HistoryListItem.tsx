@@ -1,19 +1,17 @@
-import { Product } from "@repo/db/data";
+import { Order, Product } from "@repo/db/data";
+import Link from "next/link";
 
-export function HistoryListItem({ product }: { product: Product }) {
+export function HistoryListItem({ order }: { order: Order }) {
   
   return (
-    <article
-      key={product.id}
+    <article 
+      key={order.orderId}
       className="pb-5"
-      data-test-id={`blog-post-${product.id}`}
+      data-test-id={`order-list-${order.orderId}`}
     >
-      <p>{product.title}</p>
-      <p className="">{product.categories}</p>
-      <p>{product.description}</p>
-      <p>Price: ${product.price}</p>
-      {/*<p>#{post.tags.replace(",", " #")}</p>
-      <p>{post.views} views {post.likes.length} likes</p>*/}
+      <p>{order.orderDate.toDateString()}</p>
+      <p className="">{order.totalCost}</p>
+      <Link href={`/profile/${order.userId}/order-details/${order.orderId}`}> View Details</Link>
     </article>
   );
 }
