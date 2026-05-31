@@ -6,7 +6,7 @@ import { marked } from "marked";
 export function ProductForm({product} : {product? : Product}){
     const [state, formAction] = useActionState(updateProduct, {success:false, productId: product?.id, urlId: product?.urlId});
     const [preview, setPreview] = useState({state: false,  contentParsed: ""});
-    const [productData, setproductData] = useState({title: product?.title, desc: product?.description, content: product?.content == undefined ? "" : product.content.trim(), img: product?.imageUrl, categories: product?.categories});
+    const [productData, setproductData] = useState({title: product?.title, desc: product?.description, content: product?.content == undefined ? "" : product.content.trim(), img: product?.imageUrl, categories: product?.categories, price: product?.price.toString(), stock: product?.stock.toString()});
     const inputRef = createRef<HTMLTextAreaElement>()
 
     //TODO: fix indents because character limit 
@@ -15,19 +15,25 @@ export function ProductForm({product} : {product? : Product}){
     const handleChange = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
         const result = event.target.value;
         if(event.target.name == "Title"){
-            setproductData({title: result, desc: productData.desc, content: productData.content, img: productData.img, categories: productData.categories});
+            setproductData({title: result, desc: productData.desc, content: productData.content, img: productData.img, categories: productData.categories, stock: productData.stock, price: productData.price});
         }
         else if(event.target.name == "Description"){
-            setproductData({title: productData.title, desc: result, content: productData.content, img: productData.img, categories: productData.categories});
+            setproductData({title: productData.title, desc: result, content: productData.content, img: productData.img, categories: productData.categories, stock: productData.stock, price: productData.price});
         }
         else if(event.target.name == "Content"){
-            setproductData({title: productData.title, desc: productData.desc, content: event.target.value, img: productData.img, categories: productData.categories});
+            setproductData({title: productData.title, desc: productData.desc, content: event.target.value, img: productData.img, categories: productData.categories, stock: productData.stock, price: productData.price});
         }
         else if(event.target.name == "ImageUrl"){
-            setproductData({title: productData.title, desc: productData.desc, content: productData.content, img: result, categories: productData.categories});
+            setproductData({title: productData.title, desc: productData.desc, content: productData.content, img: result, categories: productData.categories, stock: productData.stock, price: productData.price});
         }
         else if(event.target.name == "Categories"){
-            setproductData({title: productData.title, desc: productData.desc, content: productData.content, img: productData.img, categories: result});
+            setproductData({title: productData.title, desc: productData.desc, content: productData.content, img: productData.img, categories: result, stock: productData.stock, price: productData.price});
+        }
+        else if(event.target.name == "Stock"){
+            setproductData({title: productData.title, desc: productData.desc, content: productData.content, img: productData.img, categories: productData.categories, stock: result, price: productData.price});
+        }
+        else if(event.target.name == "Price"){
+            setproductData({title: productData.title, desc: productData.desc, content: productData.content, img: productData.img, categories: productData.categories, stock: productData.stock , price: result});
         }
     }
     return (
@@ -77,6 +83,14 @@ export function ProductForm({product} : {product? : Product}){
             <div>
                 <label htmlFor="Categories">Categories</label>
                 <input className="border-1 mb-5 ml-5 field-sizing-content pl-2 pr-2" aria-label="Categories Input" type="text" name="Categories" id="Categories" value={productData.categories ? productData.categories : ""} onChange={handleChange} ></input>
+            </div>
+            <div>
+                <label htmlFor="Stock">Stock</label>
+                <input className="border-1 mb-5 ml-5 field-sizing-content pl-2 pr-2" aria-label="Stock Input" type="number" name="Stock" id="Stock" value={productData.stock ? productData.stock : ""} onChange={handleChange} ></input>
+            </div>
+            <div>
+                <label htmlFor="Price">Price</label>
+                <input className="border-1 mb-5 ml-5 field-sizing-content pl-2 pr-2" aria-label="Price Input" type="number" name="Price" id="Price" value={productData.price ? productData.price : ""} onChange={handleChange} ></input>
             </div>
             <div>
                 <label htmlFor="ImageUrl">Image URL</label>

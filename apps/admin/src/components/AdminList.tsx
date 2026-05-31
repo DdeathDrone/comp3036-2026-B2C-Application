@@ -22,12 +22,12 @@ export function AdminList({product} : {product : Product}){
         <p>Categories: {product.categories}</p>
         <p>Stock: {product.stock}</p>
         <p>Price: ${product.price}</p>
-        <button aria-label="Active Toggle" className="border border-black rounded-sm px-1"onClick={async ()=> {/*await fetch(`api/products?id=${product.id}${ isActive ? ("&active=" + isActive) : ""}`, {
+        <button aria-label="Active Toggle" className="border border-black rounded-sm px-1"onClick={async ()=> {await fetch(`api/products?id=${product.id}${ isActive ? ("&active=" + isActive) : ""}`, {
             method: "PATCH"
           });
           setActive(!isActive);
           router.push("/");
-          */}
+          }
         }
         >{isActive ? "Active" : "Inactive"}</button>
         </article>
