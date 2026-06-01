@@ -1,4 +1,5 @@
 "use server"
+import { logOut } from "@/functions/logOut";
 import { env } from "@repo/env/web";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
@@ -17,6 +18,6 @@ export async function ProfileButton(){
         return <Link className="pl-5 pr-5"href={`/profile/${user.userid}`}>{user.username}</Link>
     }
     catch (err){
-        console.error('Token invalid');
+        logOut();
     }
 }
