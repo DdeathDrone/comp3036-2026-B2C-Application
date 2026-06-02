@@ -31,3 +31,17 @@ export async function PUT(req: NextRequest){
     
 
 }
+
+export async function GET(req: NextRequest){
+    const cookieStore = await cookies();
+
+    const cart = cookieStore.get("cart");
+
+    if(!cart){
+        const res = NextResponse.json({message: "Cart is empty", status: 204})
+        return res;
+    }
+    const parsed = JSON.parse(decodeURIComponent(cart.value));
+    const res = NextResponse.json({message: parsed, status: 200});
+    return res;
+}
