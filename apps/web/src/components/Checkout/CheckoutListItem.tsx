@@ -1,4 +1,4 @@
-import { cartRemove } from "@/functions/cartRemvoe";
+import { cartRemove } from "@/functions/cartRemove";
 import type { Product } from "@repo/db/data";
 import Image from "next/image";
 import Link from "next/link";

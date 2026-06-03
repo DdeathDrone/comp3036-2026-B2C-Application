@@ -62,7 +62,7 @@ export async function DELETE(req : NextRequest){
     const cookieStore = await cookies();
 
     const request = await req.json();
-    console.log(request.id);
+    //console.log(request.id);
     const cart = cookieStore.get("cart");
 
     if(!cart){
@@ -71,6 +71,7 @@ export async function DELETE(req : NextRequest){
     }
     const parsed = JSON.parse(decodeURIComponent(cart.value));
     const result = {cart:  parsed.cart.filter(({id}) => id != request.id)};
+    console.log(result);
 
 
     const res = NextResponse.json({body: result}, {status:200});
