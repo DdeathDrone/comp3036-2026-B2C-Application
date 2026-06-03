@@ -1,4 +1,4 @@
-import { Checkout } from "@/components/Checkout";
+import { Checkout } from "@/components/Checkout/Checkout";
 import { AppLayout } from "@/components/Layout/AppLayout";
 import { getCheckout } from "@/functions/getCheckout";
 import { client } from "@repo/db/client";

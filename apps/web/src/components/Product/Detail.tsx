@@ -27,6 +27,6 @@ export async function ProductDetail({ product }: { product: Product }) {
     <p>Price: {product.price}</p>
     {/*<p>#{product.tags.replace(",", " #")}</p>
     <p>{product.views+1} views {product.likes.length} likes</p>*/}
-    <CartButton postid={product.id}></CartButton>
+    <CartButton productId={product.id}></CartButton>
   </article>;
 }

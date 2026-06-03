@@ -1,9 +1,8 @@
 import type { Product } from "@repo/db/data";
 import Image from "next/image";
 import Link from "next/link";
-import { CartButton } from "./CartButton";
 
-export function ProductListItem({ product }: { product: Product }) {
+export function CheckoutListItem({ product, quantity }: { product: Product, quantity: number }) {
   
   return (
     <article
@@ -23,8 +22,15 @@ export function ProductListItem({ product }: { product: Product }) {
       <p>{product.description}</p>
       </div>
       <div className="block isolate float-right">
-      <p className="text-xl text-right">${product.price.toFixed(2)}</p>
-      <CartButton productId={product.id} className="mt-20"></CartButton>
+      <p className="text-right">Price: ${product.price.toFixed(2)}</p>
+      <label htmlFor="Quantity">Quantity: </label>
+      <input type="number" name="Quantity" id="Quantity" className="text-right w-10" defaultValue={quantity}></input>
+      <p className="text-right pt-2"><button className="text-blue-700" onClick={() =>}>Update</button></p>
+      <p className="text-right pt-2"><button className="text-red-400">Remove</button></p>
+
+
+      <p className="text-right">Total: ${quantity*product.price}</p>
+      
       </div>
     </article>
   );
