@@ -1,13 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
+import { client } from "@repo/db/client";
 
-export async function PUT(req: NextRequest){
+export async function PUT(req: NextRequest){ //TODO: Secure API
     const cookieStore = await cookies();
 
     const request = await req.json();
 
     if(!cookieStore.get("cart")){
-        const newCart = {cart: [{id: request.id, ammount: request.ammount}]}
+        const newCart = {cart: [ {id: request.id, ammount: request.ammount}]}
         const res = NextResponse.json({body: newCart, status: 200})
         res.cookies.set("cart", encodeURIComponent(JSON.stringify(newCart)));
         return res;
@@ -38,10 +39,23 @@ export async function GET(req: NextRequest){
     const cart = cookieStore.get("cart");
 
     if(!cart){
-        const res = NextResponse.json({message: "Cart is empty", status: 204})
+        const res = NextResponse.json({message: "Cart is empty"},{ status: 404});
         return res;
     }
     const parsed = JSON.parse(decodeURIComponent(cart.value));
-    const res = NextResponse.json({message: parsed, status: 200});
+    //console.log(parsed.cart);
+    const message = parsed.cart;
+    console.log(message);
+    const cartIds = message.map((item: { id: any; }) => item.id);
+    const cartAmmounts = message.map((item: { ammount: any; }) => item.ammount);
+    
+    const products = await client.db.product.findMany({where: {id: {in: cartIds}}})
+    var result = []
+    console.log();
+    for(var i = 0; i < products.length; i++){
+        //console.log(message.find(({id}) => id == 1));
+        result.push({product: products[i], ammount: message.find(({id}) => id == products[i].id).ammount});
+    }
+    const res = NextResponse.json({message: result, status: 200});
     return res;
 }
