@@ -78,3 +78,24 @@ export async function DELETE(req : NextRequest){
     res.cookies.set("cart", encodeURIComponent(JSON.stringify(result)));
     return res;
 }
+
+export async function PATCH(req : NextRequest){
+    const cookieStore = await cookies();
+
+    const request = await req.json();
+    //console.log(request.id);
+    const cart = cookieStore.get("cart");
+
+    if(!cart){
+        const res = NextResponse.json({message: "Cart is empty"},{ status: 404});
+        return res;
+    }
+    const parsed = JSON.parse(decodeURIComponent(cart.value));
+
+    parsed.cart.find(({id}) => id == request.id).ammount = request.ammount;
+
+    const res = NextResponse.json({message: parsed}, {status: 200});
+    res.cookies.set("cart", encodeURIComponent(JSON.stringify(parsed)));
+    return res;
+
+}
