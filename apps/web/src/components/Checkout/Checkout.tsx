@@ -4,7 +4,7 @@ import { CheckoutForm } from "./CheckoutForm";
 import {use, Suspense} from "react";
 import { CheckoutList } from "./CheckoutList";
 
-const cart = getCheckout().then((result) => {return result}).catch((err) => {return []});
+const cart = getCheckout().then((result) => {return result}).catch((err) => {console.log(err); return []});
 
 function CheckoutPromise({cart} : {cart : Promise<Array<Object>>}){
     const cartContent = use(cart);

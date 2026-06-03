@@ -1,8 +1,11 @@
+import { cartRemove } from "@/functions/cartRemvoe";
 import type { Product } from "@repo/db/data";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 export function CheckoutListItem({ product, quantity }: { product: Product, quantity: number }) {
+    const [quant, setQuant] = useState(quantity); 
   
   return (
     <article
@@ -24,9 +27,9 @@ export function CheckoutListItem({ product, quantity }: { product: Product, quan
       <div className="block isolate float-right">
       <p className="text-right">Price: ${product.price.toFixed(2)}</p>
       <label htmlFor="Quantity">Quantity: </label>
-      <input type="number" name="Quantity" id="Quantity" className="text-right w-10" defaultValue={quantity}></input>
-      <p className="text-right pt-2"><button className="text-blue-700" onClick={() =>}>Update</button></p>
-      <p className="text-right pt-2"><button className="text-red-400">Remove</button></p>
+      <input type="number" name="Quantity" id="Quantity" className="text-right w-10" value={quant} onChange={(e) => setQuant(parseInt(e.target.value))}></input>
+      <p className="text-right pt-2"><button className="text-blue-700" >Update</button></p>
+      <p className="text-right pt-2"><button className="text-red-400" onClick={ async () => await cartRemove(product.id)}>Remove</button></p>
 
 
       <p className="text-right">Total: ${quantity*product.price}</p>
