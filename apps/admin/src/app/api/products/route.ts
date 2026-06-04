@@ -6,7 +6,9 @@ import { toUrlPath } from "@repo/utils/url";
 export async function PATCH(req: NextRequest){
     const { searchParams } = new URL(req.url);
     const stringid = searchParams.get("id")
-    const productid = parseInt(stringid ? stringid : ""); //i love adding extra lines & variables cuz typescript hates me
+    if(!stringid) return NextResponse.json({message: "Bad Request"}, {status:400});
+
+    const productid = parseInt(stringid); 
     const state = searchParams.get("active"); // state will be either something or nothing, nothing means current db value is false, something means true
     const update = await client.db.product.update({where: {id: productid}, data: {active: state ? false : true}}) //if something (db = true) then set db active to false, if nothing (db = false) set db to true
     const response = NextResponse.json(update)
@@ -18,6 +20,7 @@ export async function PUT(req: NextRequest){
     const {Title, Description, Content, ImageUrl, Categories, Stock, Price} = await req.json();
     const { searchParams } = new URL(req.url);
     const stringid = searchParams.get("id");
+    //if(!stringid) return NextResponse.json({message: "Bad Request"}, {status:400});
     const pathname = searchParams.get("urlId");
   
     const productid = parseInt(stringid ? stringid : "");
@@ -28,7 +31,6 @@ export async function PUT(req: NextRequest){
             data: {
                 title:Title, 
                 //urlId: ( pathname ? pathname.split("0-")[0] == toUrlPath(Title) ? pathname : await makeUrlId(Title) : await makeUrlId(Title)), 
-                //Unique UrlID feature removed because thats what tests wanted, error will now be thrown if u have the same title as another user.
                 urlId: toUrlPath(Title),
                 description: Description, 
                 categories: Categories,
@@ -51,8 +53,8 @@ export async function PUT(req: NextRequest){
                 date: new Date(),
                 categories: Categories,
                 active: true, 
-                price: Price,
-                stock: Stock,
+                price: parseFloat(Price),
+                stock: parseInt(Stock),
                 }
         });
         
@@ -60,5 +62,17 @@ export async function PUT(req: NextRequest){
     const response = NextResponse.json({result});
     return response;
 
+
+}
+
+export async function DELETE(req: NextRequest){
+    const { searchParams } = new URL(req.url);
+    const stringid = searchParams.get("id");
+    if(!stringid) return NextResponse.json({message: "Bad Request"}, {status:400});
+    const productid = parseInt(stringid);
+
+    const result = await client.db.product.delete({where:{id: productid}});
+
+    return NextResponse.json({result}, {status:200});
 
 }

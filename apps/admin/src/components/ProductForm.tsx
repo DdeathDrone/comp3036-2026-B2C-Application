@@ -3,6 +3,8 @@ import { Product } from "@repo/db/data";
 import { useActionState, useState, useRef, RefObject, createRef} from "react";
 import { updateProduct } from "../functions/updateProduct";
 import { marked } from "marked";
+import { redirect } from "next/navigation";
+
 export function ProductForm({product} : {product? : Product}){
     const [state, formAction] = useActionState(updateProduct, {success:false, productId: product?.id, urlId: product?.urlId});
     const [preview, setPreview] = useState({state: false,  contentParsed: ""});
@@ -100,11 +102,20 @@ export function ProductForm({product} : {product? : Product}){
                 </div>
             </div>
             {state.error && <p className="text-red-500">{state.error}</p>}
-
+            <div>
             <button className="bg-black text-white rounded-2xl py-1 px-2 mb-20 mt-3">Save</button>
+            {!product ? null :
+            <button type="button" className="bg-red-500 float-right text-white rounded-2xl py-1 px-2 mb-20 mt-3" onClick={async () => { //TODO: Make confirmation popup
+                const res = await fetch(`http://localhost:3002/api/products?id=${product.id}`, {
+                    method: "DELETE",
+                })
+                redirect("/");
+            }}>Delete</button>
+            }
+            </div>
             {state.success && <p className="text-green-500">product updated successfully</p>}
             {state.error && <p className="text-red-500">Please fix the errors before saving</p>}
-
+            
         </form>
     )
 }

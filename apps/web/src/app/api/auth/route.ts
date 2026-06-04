@@ -58,7 +58,7 @@ export async function PUT(req: NextRequest){
     return res;
 }
 
-export async function PATCH(req: NextRequest){
+/*export async function PATCH(req: NextRequest){
     const {email, password} = await req.json();
     const hash = await bcrypt.hash(password, 10);
 
@@ -70,4 +70,4 @@ export async function PATCH(req: NextRequest){
     })
     const res = NextResponse.json({message: result, status: 200})
     return res;
-}
+}*/
