@@ -3,6 +3,7 @@ import { Content } from "../Content";
 import { LeftMenu } from "../Menu/LeftMenu";
 import { TopMenu } from "./TopMenu";
 import { ThemeProvider } from "../Themes/ThemeContext";
+import { CartPopupProvider } from "../Checkout/CartPopupContext";
 
 export async function AppLayout({
   children,
@@ -12,12 +13,14 @@ export async function AppLayout({
   return (
     <div className="">
     <ThemeProvider>
+    <CartPopupProvider>
       <TopMenu query={query} />
       <LeftMenu selected={selected}/>
       <Content>
         
         {children}
       </Content>
+    </CartPopupProvider>
     </ThemeProvider>
     </div>
   );
