@@ -7,6 +7,18 @@ test.describe("CHECKOUT SCREEN", () => {
   });
 
   test(
+    "View Empty Cart",
+    {
+      tag: "@a2",
+    },
+    async ({page}) => {
+        await page.goto("/checkout");
+
+        await expect(page.getByText("Cart is empty")).toBeVisible();
+
+    }
+  )
+  test(
     "Add to cart",
     {
       tag: "@a2",
