@@ -10,7 +10,7 @@ export function CheckoutList({cart} : {cart : any[]}){
     }
     return (<>
     {cart.map((item) => <CheckoutListItem key={item.product.id} product={item.product} quantity={item.ammount}></CheckoutListItem>)}
-    <p className="pt-5 text-xl">Total: ${total}</p>
+    <p className="pt-5 text-xl">Order Total: ${total.toFixed(2)}</p>
     </>
 )
 }
