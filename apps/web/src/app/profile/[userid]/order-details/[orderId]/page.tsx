@@ -13,7 +13,7 @@ export default async function Page({
   const id = parseInt(orderId);
   
   const user = await isLoggedIn();
-  if(user?.userid != id) return redirect("/login")
+  if(!user || user?.userid != id) return redirect("/")
   return <AppLayout><OrderDetails order={await client.db.order.findFirstOrThrow({where: {orderId: id}, include:{OrderItem: {include: {Product: true}} }})}></OrderDetails></AppLayout>
 
 }

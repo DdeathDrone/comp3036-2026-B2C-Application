@@ -15,7 +15,7 @@ export default async function Page({
   
 
   const user = await isLoggedIn();
-  if(user?.userid != id) return redirect("/login")
+  if(!user || user?.userid != id) return redirect("/")
   return <AppLayout><Profile user={await client.db.user.findFirstOrThrow({where: {userId: id}, include:{Order: true}})}></Profile></AppLayout>
 
 }
