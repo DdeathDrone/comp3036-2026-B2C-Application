@@ -1,10 +1,12 @@
 'use client'
 import { logIn } from "@/functions/logIn";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useActionState } from "react";
 
 export function LoginForm(){
-    const [state, formAction] = useActionState(logIn, {success: false, error: undefined});
+    const router = useRouter();
+    const [state, formAction] = useActionState(logIn, {success: false, error: undefined, router: router});
     return <><form action={formAction} className="pt-10">
         <label className="pr-2" htmlFor="email">Email</label>
         <input className="border border-black" id="email" name="email"></input>

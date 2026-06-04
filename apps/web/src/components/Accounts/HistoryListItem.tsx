@@ -3,7 +3,7 @@ import { Order, Product } from "@repo/db/data";
 import Link from "next/link";
 
 export function HistoryListItem({ order }: { order: Order }) {
-  const mins = order.orderDate.getMinutes() < 10 ? order.orderDate.getMinutes() + "0" : order.orderDate.getMinutes();
+  const mins = order.orderDate.getMinutes() < 10 ? "0" + order.orderDate.getMinutes()  : order.orderDate.getMinutes();
   const date = (
     order.orderDate.getDate() +"/"+ (order.orderDate.getMonth()+1) +"/"+ order.orderDate.getFullYear() + "    " + 
     (order.orderDate.getHours() > 12 ? order.orderDate.getHours() - 12 + ":" + mins + " PM" 

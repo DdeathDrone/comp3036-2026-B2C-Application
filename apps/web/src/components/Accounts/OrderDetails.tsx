@@ -2,7 +2,7 @@ import { Order } from "@prisma/client";
 import { OrderDetailItem } from "./OrderDetailItem";
 
 export function OrderDetails({order} : {order : Order}){
-    const mins = order.orderDate.getMinutes() < 10 ? order.orderDate.getMinutes() + "0" : order.orderDate.getMinutes();
+    const mins = order.orderDate.getMinutes() < 10 ? "0" + order.orderDate.getMinutes()  : order.orderDate.getMinutes();
     const date = (
         order.orderDate.getDate() +"/"+ (order.orderDate.getMonth()+1) +"/"+ order.orderDate.getFullYear() + "    " + 
         (

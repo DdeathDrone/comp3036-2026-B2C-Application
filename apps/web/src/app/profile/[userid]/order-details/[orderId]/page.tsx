@@ -7,13 +7,14 @@ import { redirect } from "next/navigation";
 export default async function Page({
   params,
 }: {
-  params: Promise<{ orderId: string }>;
+  params: Promise<{ orderId: string, userid: string }>;
 }) {
-  const { orderId } = await params;
+  const { orderId, userid } = await params;
   const id = parseInt(orderId);
+  const uid = parseInt(userid);
   
   const user = await isLoggedIn();
-  if(!user || user?.userid != id) return redirect("/")
+  if(!user || user?.userid != uid) return redirect("/")
   return <AppLayout><OrderDetails order={await client.db.order.findFirstOrThrow({where: {orderId: id}, include:{OrderItem: {include: {Product: true}} }})}></OrderDetails></AppLayout>
 
 }

@@ -13,7 +13,7 @@ export async function isLoggedIn() { //TODO: Change Name
   const token = userCookies.get("auth_token");
   
     if(!token){
-      redirect("/");
+      return undefined;
     }
     try{
       const user = await jwt.verify(token.value, env.JWT_SECRET) as jwt.JwtPayload; //TODO: Move to API when implementing backend

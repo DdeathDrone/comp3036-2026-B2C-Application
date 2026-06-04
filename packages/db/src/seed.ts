@@ -49,6 +49,9 @@ export async function seed() {
            userId: o.userId,
            orderDate: o.orderDate,
            totalCost: o.totalCost,
+           deliveryAddress: o.deliveryAddress,
+           recipientFirstName: o.recipientFirstName,
+           recipientSurname: o.recipientSurname,
          },
        });
     }

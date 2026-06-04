@@ -99,3 +99,49 @@ export async function PATCH(req : NextRequest){
     return res;
 
 }
+
+export async function POST(req: NextRequest){
+    const request = await req.json();
+
+    const cookieStore = await cookies();
+    const cart = cookieStore.get("cart");
+
+    if(!cart){
+        const res = NextResponse.json({message: "Cart is empty",},{ status: 404});
+        return res;
+    }
+    const parsed = JSON.parse(decodeURIComponent(cart.value));
+    //console.log(parsed.cart);
+    const message = parsed.cart;
+    const cartIds = message.map((item: { id: any; }) => item.id);
+    const cartAmmounts = message.map((item: { ammount: any; }) => item.ammount);
+    
+    const products = await client.db.product.findMany({select:{id: true}, where: {id: {in: cartIds}}})
+
+    var itemData = []
+
+    for(var i = 0; i < products.length; i++){
+        //console.log(message.find(({id}) => id == 1));
+        itemData.push({productId: products[i].id, ammount: message.find(({id}) => id == products[i].id).ammount});
+    }
+
+
+    
+    const result = await client.db.order.create({
+        data: {
+            totalCost: request.totalCost,
+            deliveryAddress: request.address,
+            recipientFirstName: request.fName,
+            recipientSurname: request.lName,
+            userId: request.userId,
+            OrderItem:{ createMany: {data: itemData}}
+        }
+    })
+
+    const orderItems = await client.db.orderItem
+
+
+
+    return NextResponse.json({result}, {status:200});
+
+}

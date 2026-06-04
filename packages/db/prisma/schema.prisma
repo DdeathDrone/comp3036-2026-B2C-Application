@@ -43,6 +43,9 @@ model Order {
   User User @relation(fields: [userId], references: [userId])
   orderDate DateTime @default(now())
   totalCost Float
+  deliveryAddress String
+  recipientFirstName String
+  recipientSurname String
   OrderItem OrderItem[]
 }
 

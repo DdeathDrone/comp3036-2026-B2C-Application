@@ -7,12 +7,18 @@ import { CheckoutList } from "./CheckoutList";
 
 
 
-function CheckoutPromise({cart} : {cart : Promise<Array<Object>>}){
+function CheckoutPromise({cart, user} : {cart : Promise<Array<any>>, user: number}){
     const cartContent = use(cart);
-    return <CheckoutList cart={cartContent}/>;
+    var total = 0;
+    for(const c of cartContent){
+        total += c.product.price * c.ammount
+    }
+    return (<>
+    <CheckoutList cart={cartContent}/>
+    {cartContent.length == 0 ? null : <CheckoutForm user={user} totalCost={total}/>}</>);
 }
 
-export function Checkout(){
+export function Checkout({user} : {user: number}){
     const cart = getCheckout().then((result) => {return result}).catch((err) => {console.log(err); return []});;
     
     return (
@@ -20,10 +26,11 @@ export function Checkout(){
         Checkout:
         
         <Suspense fallback={<p>Loading cart...</p>}>
-            <CheckoutPromise cart={cart}></CheckoutPromise>{/*TODO: Add Cart with backend implementation */}
+            <CheckoutPromise user={user} cart={cart}></CheckoutPromise>
+            
         </Suspense>
         
-        <CheckoutForm/>
+        
     </div>
     )
 }

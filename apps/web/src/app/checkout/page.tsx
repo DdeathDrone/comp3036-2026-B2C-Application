@@ -2,6 +2,9 @@ import { Checkout } from "@/components/Checkout/Checkout";
 import { AppLayout } from "@/components/Layout/AppLayout";
 import { getCheckout } from "@/functions/getCheckout";
 import { client } from "@repo/db/client";
+import { isLoggedIn } from "../../../utils/auth";
+import { redirect, RedirectType } from "next/navigation";
+import { LoginForm } from "@/components/Accounts/LoginForm";
 
 export default async function Page(){
     /*const res = await fetch(`http://localhost:3001/api/cart`, {
@@ -16,6 +19,9 @@ export default async function Page(){
     const cart = cartJson.message.cart;
     
     const products = await client.db.product.findMany({where: {id: {in: cart.id}}})*/
+
+    const user = await isLoggedIn();
+    if(!user) return <AppLayout><LoginForm/></AppLayout> //return redirect("/login", RedirectType.push);
     
-    return <AppLayout><Checkout/></AppLayout>
+    return <AppLayout><Checkout user={user.userid}/></AppLayout>
 }
