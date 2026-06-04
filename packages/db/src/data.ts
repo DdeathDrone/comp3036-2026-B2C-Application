@@ -129,13 +129,13 @@ export const orders: Order[] = [
   {
   orderId:1,
   userId:1,
-  orderDate: new Date("May 16, 2026"),
+  orderDate: new Date("May 16, 2026 14:23:00"),
   totalCost: 849.00
   },
   {
   orderId:2,
   userId:1,
-  orderDate: new Date("May 30, 2026"),
+  orderDate: new Date("May 30, 2026 16:56:00"),
   totalCost: 40
   }
 ]

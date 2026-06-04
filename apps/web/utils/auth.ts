@@ -20,7 +20,10 @@ export async function isLoggedIn() { //TODO: Change Name
       return user;
     }
     catch (err){
-      userCookies.delete("auth_token");
+      const response = await fetch(`http://localhost:3001/api/auth`, {
+        method: "DELETE",
+      });
+      
    }
   //try{token && jwt.verify(token, env.JWT_SECRET || ""); return token && jwt.verify(token, env.JWT_SECRET || "")}
   //catch{return false}

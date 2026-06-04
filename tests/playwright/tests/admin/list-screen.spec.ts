@@ -31,18 +31,18 @@ test.describe("ADMIN LIST SCREEN", () => {
       await userPage.goto("/");
 
       // LIST SCREEN > On the top is a filter screen that allows to filter posts by Title or content
-      await userPage.getByLabel("Filter by Content:").fill("Switch");
+      await userPage.getByLabel("Filter by Content").fill("Switch");
       await expect(await userPage.locator("article").count()).toBe(1);
       await expect(
         userPage.getByText("Nintendo Switch 2"),
       ).toBeVisible();
 
-      await userPage.getByLabel("Filter by Content:").fill("post2");
+      await userPage.getByLabel("Filter by Content").fill("post2");
       await expect(
         userPage.getByText("BasketBall"),
       ).toBeVisible();
 
-      await userPage.getByLabel("Filter by Content:").clear();
+      await userPage.getByLabel("Filter by Content").clear();
       await expect(await userPage.locator("article").count()).toBe(4);
     },
   );
@@ -56,7 +56,7 @@ test.describe("ADMIN LIST SCREEN", () => {
       await userPage.goto("/");
 
       // LIST SCREEN > On the top is a filter screen that allows to filter posts by tags
-      await userPage.getByLabel("Filter by Category:").fill("Electronics");
+      await userPage.getByLabel("Filter by Category").fill("Electronics");
       await expect(await userPage.locator("article").count()).toBe(2);
       await expect(
         userPage.getByText("Electric Toothbrush"),
@@ -64,7 +64,7 @@ test.describe("ADMIN LIST SCREEN", () => {
       await expect(
         userPage.getByText("Nintendo Switch 2"),
       ).toBeVisible();
-      await userPage.getByLabel("Filter by Category:").clear();
+      await userPage.getByLabel("Filter by Category").clear();
     },
   );
 
@@ -78,7 +78,7 @@ test.describe("ADMIN LIST SCREEN", () => {
 
       // LIST SCREEN > On the top is a filter screen that allows to filter posts by date
       await userPage
-        .getByLabel("Filter by Date Created:")
+        .getByLabel("Filter by Date Created")
         .pressSequentially("01012022");
       await expect(await userPage.locator("article").count()).toBe(2);
       await expect(
@@ -87,7 +87,7 @@ test.describe("ADMIN LIST SCREEN", () => {
       await expect(
         userPage.getByText("Nintendo Switch 2"),
       ).toBeVisible();
-      await userPage.getByLabel("Filter by Date Created:").clear();
+      await userPage.getByLabel("Filter by Date Created").clear();
     },
   );
 
@@ -100,9 +100,9 @@ test.describe("ADMIN LIST SCREEN", () => {
       await userPage.goto("/");
 
       // LIST SCREEN > On the top is a filter screen that allows to filter by visibility
-      await userPage.getByLabel("Filter by Category:").fill("Electronics");
+      await userPage.getByLabel("Filter by Category").fill("Electronics");
       await userPage
-        .getByLabel("Filter by Date Created:")
+        .getByLabel("Filter by Date Created")
         .pressSequentially("01012023");
       await expect(await userPage.locator("article").count()).toBe(1);
       await expect(
@@ -253,7 +253,7 @@ test.describe("ADMIN LIST SCREEN", () => {
   test(
     "Can activate / deactivate posts",
     {
-      tag: "@a2",
+      tag: "@a1",
     },
     async ({ userPage }) => {
       await seed();

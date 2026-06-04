@@ -11,6 +11,6 @@ export async function ProfileButton(){
     const token = cookie.get("auth_token");
 
     const user = await isLoggedIn();
-    return <Link className="pl-5 pr-5"href={`/profile/${user.userid}`}>{user.username}</Link>
+    return <Link className="pl-5 pr-5"href={`/profile/${user?.userid}`}>{user?.username}</Link>
     
 }

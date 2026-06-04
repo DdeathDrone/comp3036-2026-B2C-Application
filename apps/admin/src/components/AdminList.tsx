@@ -19,7 +19,7 @@ export function AdminList({product} : {product : Product}){
         <a href={`/product/${product.urlId}`} className="text-xl">{product.title}</a>
         <img src={product.imageUrl} width={200} height={200} alt="image"></img>
         <p>{"Product added on " + date[0]?.value + " " + date[2]?.value + ", " + date[4]?.value}</p>
-        <p>Categories: {product.categories}</p>
+        <p>Categories: {product.categories.replace(",", ", ")}</p>
         <p>Stock: {product.stock}</p>
         <p>Price: ${product.price}</p>
         <button aria-label="Active Toggle" className="border border-black rounded-sm px-1"onClick={async ()=> {await fetch(`api/products?id=${product.id}${ isActive ? ("&active=" + isActive) : ""}`, {
