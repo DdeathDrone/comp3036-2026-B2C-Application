@@ -25,7 +25,7 @@ export function Search({ query }: { query?: string }) {
     
 
       <form action="#" method="GET" className="" >
-        <input id="search" type="text" className="flex-1 float-left p-2 mt-3 ml-1 w-200  placeholder-black" aria-label="Product Search" placeholder="Search" onChange={e => handleSearch(e)} /> 
+        <input id="search" type="text" className="flex-1 float-left p-2 mt-3 ml-1 w-1/2  placeholder-black" aria-label="Product Search" placeholder="Search" onChange={e => handleSearch(e)} /> 
       </form>
 
   )
