@@ -13,18 +13,38 @@ function CheckoutComplete({res} : {res : Promise<any>}){
 
 export function CheckoutForm({user, totalCost} : {user: number; totalCost: number}){
     const [state, formAction] = useActionState(handleCheckout, {success: false, error: undefined, userId: user, totalCost: totalCost});
-    return <form className="grid grid-cols-4 w-150" action={formAction} aria-label="Payment Details Form">
-        <label htmlFor="Address">Address:</label>
-        <input className="border border-black col-span-3 mb-3" name="Address" id="Address"  aria-label="Address Field" tabIndex={0}></input>
-        <label htmlFor="FirstName">First Name:</label>
-        <input className="border border-black mr-5" name="FirstName" id="FirstName" aria-label="FirstName Field" tabIndex={0}></input>
-        <label htmlFor="LastName">Last Name:</label>
-        <input className="border border-black " name="LastName" id="LastName" aria-label="LastName Field" tabIndex={0}></input>
-        {state.error && <p style={{color: 'red'}}>{state.error}</p>}
-        {!state.res ? <button className="bg-green-500 rounded-2xl px-2 py-1 mt-2 " aria-label="Pay Button">Pay</button> : 
-        <Suspense fallback={<p>Transaction Pending...</p>}><CheckoutComplete res={state.res}/></Suspense> }
-        
+    return (
+    <div className="flex max-w-400 place-content-center">
+        <div className="block border mt-5 rounded-md px-5 pb-5 bg-blue-600/50">
+            <p className="pt-5 text-xl">Order Total: ${state.totalCost.toFixed(2)}</p>
+
+            <form className="" action={formAction} aria-label="Payment Details Form">
+                <div className="">
+                    
+                    <div className="my-1 ">
+                        <label htmlFor="Address">Address:</label>
+                        <input className="border ml-14" name="Address" id="Address"  aria-label="Address Field" tabIndex={0}></input>
+                    </div>
+                    <div className="my-1">
+                        <label htmlFor="FirstName" className="">First Name:</label>
+                        <input className="border ml-9" name="FirstName" id="FirstName" aria-label="FirstName Field" tabIndex={0}></input>
+                    </div>
+                    <div className="my-1">
+                        <label htmlFor="LastName">Last Name:</label>
+                        <input className="border ml-10" name="LastName" id="LastName" aria-label="LastName Field" tabIndex={0}></input>
+                    </div>
+                    <div className="my-1">
+                        <label htmlFor="LastName">Card Number:</label>
+                        <input className="border ml-5" name="LastName" id="LastName" aria-label="LastName Field" tabIndex={0}></input>
+                    </div>
+                </div>
+                {state.error && <p style={{color: 'red'}}>{state.error}</p>}
+                {!state.res ? <button className="bg-green-400 text-black hover:bg-green-600 border rounded-lg px-4 py-1 mt-2 " aria-label="Pay Button">Pay</button> : 
+                <Suspense fallback={<p>Transaction Pending...</p>}><CheckoutComplete res={state.res}/></Suspense> }
+                
 
 
-    </form>
-}
+            </form>
+        </div>
+    </div>
+)}

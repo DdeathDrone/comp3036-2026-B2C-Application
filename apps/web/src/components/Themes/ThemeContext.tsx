@@ -33,8 +33,8 @@ export const ThemeProvider = ({children}: PropsWithChildren)=>{
     setTheme((t)=> (
       t == "light" ? "dark" : "light"
     ))
-    router.refresh();
-  
+    //router.refresh();
+    window.location.reload();
     
     
 
