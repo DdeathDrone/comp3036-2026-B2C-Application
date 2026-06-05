@@ -266,7 +266,7 @@ test.describe("ADMIN UPDATE SCREEN", () => {
       await expect(
         await userPage.getByTestId("image-preview").getAttribute("src"),
       ).toBe(
-        "https://plus.unsplash.com/premium_photo-1661517706036-a48d5fc8f2f5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+        "https://store.nintendo.com.au/media/catalog/product/cache/207e23213cf636ccdef205098cf3c8a3/n/i/nintendo_switch_2_2.png",
       );
     },
   );
