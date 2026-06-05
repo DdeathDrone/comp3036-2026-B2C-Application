@@ -119,13 +119,14 @@ export type Order = {
   deliveryAddress: string;
   recipientFirstName: string;
   recipientSurname: string;
-  //OrderItem?: OrderItem[];
+  OrderItem?: OrderItem[];
 }
 
 export type OrderItem = {
   productId: number;
   orderId: number;
   ammount: number;
+  Product?: Product;
 }
 
 export const orders: Order[] = [

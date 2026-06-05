@@ -1,4 +1,4 @@
-import { Order } from "@prisma/client";
+import { Order } from "@repo/db/data";
 import { OrderDetailItem } from "./OrderDetailItem";
 
 export function OrderDetails({order} : {order : Order}){
@@ -16,8 +16,8 @@ export function OrderDetails({order} : {order : Order}){
             <p className="text-lg pb-4">Order from {date}</p>
             
             <ul>
-                {order.OrderItem.length == 0 ? "0 Items" 
-                          : order.OrderItem.map((item)=>( 
+                {order.OrderItem?.length == 0 ? "0 Items" 
+                          : order.OrderItem?.map((item)=>( 
                             <li key = {item.productId} className="">
                               {/*post.active ? <BlogListItem post={post}/> : null*/}  {/* If post is active display blogListItem else nothing */}
                               {<OrderDetailItem orderItem={item}/>}
