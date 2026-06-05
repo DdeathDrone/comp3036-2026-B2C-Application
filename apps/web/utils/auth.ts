@@ -20,7 +20,7 @@ export async function isLoggedIn() { //TODO: Change Name
       return user;
     }
     catch (err){
-      const response = await fetch(`http://localhost:3001/api/auth`, {
+      const response = await fetch(`/api/auth`, {
         method: "DELETE",
       });
       

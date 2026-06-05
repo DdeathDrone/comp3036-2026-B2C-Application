@@ -7,7 +7,7 @@ export async function handleCheckout(state: {success:boolean; error?: string; us
     if(fName.length == 0) return {success: false, error: "First Name is required", userId: state.userId, totalCost: state.totalCost};
     if(lName.length == 0) return {success: false, error: "Last Name is required", userId: state.userId, totalCost: state.totalCost};
 
-    const res = fetch ("http://localhost:3001/api/cart", {
+    const res = fetch ("/api/cart", {
         method: "POST",
         body: JSON.stringify({userId: state.userId, totalCost: state.totalCost, address: address, fName: fName, lName: lName})
     })
