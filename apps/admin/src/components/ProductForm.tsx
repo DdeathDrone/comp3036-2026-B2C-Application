@@ -106,7 +106,7 @@ export function ProductForm({product} : {product? : Product}){
             <button className="bg-black text-white rounded-2xl py-1 px-2 mb-20 mt-3">Save</button>
             {!product ? null :
             <button type="button" className="bg-red-500 float-right text-white rounded-2xl py-1 px-2 mb-20 mt-3" onClick={async () => { //TODO: Make confirmation popup
-                const res = await fetch(`http://localhost:3002/api/products?id=${product.id}`, {
+                const res = await fetch(`/api/products?id=${product.id}`, {
                     method: "DELETE",
                 })
                 redirect("/");

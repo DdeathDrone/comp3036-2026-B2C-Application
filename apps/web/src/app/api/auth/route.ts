@@ -20,7 +20,7 @@ export async function POST(req: NextRequest){
         return NextResponse.json({message: 'Email or password is incorrect'}, {status: 401});
     }
     const sessionToken = jwt.sign(
-        {logged: true, role: "user", username: password.username, userid: password.userId},
+        {logged: true, role: password.role, username: password.username, userid: password.userId},
         env.JWT_SECRET,
         {expiresIn: '15m'}
     );

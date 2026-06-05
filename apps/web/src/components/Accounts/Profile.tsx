@@ -10,7 +10,7 @@ export function Profile({user} : {user: User}){
         {user.username}
     </div>
     <div>
-        <PurchaseHistory order={user.Order}></PurchaseHistory>
+        <PurchaseHistory order={user.Order ? user.Order : [] }></PurchaseHistory>
     </div>
     </div>
     )
