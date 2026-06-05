@@ -17,7 +17,6 @@ export default async function Page({
       return <><LoginPage></LoginPage></>;
   }
   else{
-    const order = await client.db.order.findFirst({where: {orderId: id}, include: {OrderItem: {include: {Product: {select: {price: true, title: true}}}}, User: {select: {username: true, email: true}}}})
-    return <> <TopBar></TopBar> <OrderDetails order={order ? order : []}></OrderDetails></>
+    return <> <TopBar></TopBar> <OrderDetails order={await client.db.order.findFirstOrThrow({where: {orderId: id}, include: {User: true, OrderItem: {include: {Product: true}}}})}></OrderDetails></>
   }
 }
