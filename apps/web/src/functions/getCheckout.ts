@@ -1,6 +1,6 @@
 "use client"
 export async function getCheckout(){
-    const cartCookie = await fetch(`http://localhost:3001/api/cart`, {
+    const cartCookie = await fetch(`/api/cart`, {
         method: "GET",
     })
     if(cartCookie.status == 404){
