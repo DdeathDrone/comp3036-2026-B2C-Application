@@ -129,5 +129,5 @@ jobs:
           # TESTUI_RESULTS: "${{steps.testUi.outputs.result}}"
           # TESTWEB_RESULTS: "${{steps.testWeb.outputs.result}}"
         with:
-          runners: np1,npm2
+          runners: npm1,npm2
           # runners: npm1,npm2,npm3,testUtils,testUi,testWeb
