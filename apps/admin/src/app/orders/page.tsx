@@ -1,3 +1,4 @@
+import { client } from "@repo/db/client";
 import { LoginPage } from "../../components/LoginPage";
 import { OrderHistory } from "../../components/OrderHistory";
 import { TopBar } from "../../components/TopBar";
@@ -12,7 +13,7 @@ export default async function Page() {
       return <> <LoginPage></LoginPage></>;
     } else {
         
-        const orders = await getOrders();
-     return <>      <TopBar></TopBar> <OrderHistory order={orders.message}></OrderHistory></>
+      //const orders = await getOrders();
+     return <>      <TopBar></TopBar> <OrderHistory order={await client.db.order.findMany({include: {User: true, OrderItem: {include: {Product: true}}}})}></OrderHistory></>
     }
 }
