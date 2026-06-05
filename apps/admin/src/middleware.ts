@@ -6,5 +6,9 @@ export function middleware(request: NextRequest) {
         const token = request.cookies.get("auth_token");
         if(!token) return NextResponse.json({message: "Unauthorised Access"},{status:401});
     }
+    if(request.nextUrl.pathname.startsWith(`/api/history`)){
+        const token = request.cookies.get("auth_token");
+        if(!token) return NextResponse.json({message: "Unauthorised Access"},{status:401});
+    }
     return;
 }
