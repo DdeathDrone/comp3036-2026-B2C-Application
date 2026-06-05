@@ -25,7 +25,7 @@ export async function TopMenu({ query }: { query?: string }) {
     
     <div className="fixed block border-b-2 bg-blue-300 inset-x-0 top-0 h-15"> 
         
-      <Link className="float-left mt-3 mr-3 ml-2 text-2xl"href="/">B2C Store</Link>
+      <Link className="float-left mt-3 mr-3 ml-2 text-black text-2xl"href="/">B2C Store</Link>
 
       <Search query={query}/>
       {/* <div className="float-right"> */}

@@ -12,9 +12,22 @@ export function OrderDetails({order} : {order : Order}){
         ) 
   )
     return( // TODO: MAKE LOOK BETTER
-        <div className="pt-10"> 
-            <p className="text-lg pb-4">Order from {date}</p>
-            
+        <div className="mt-10 p-5 rounded-lg border"> 
+            <p className="text-xl pb-4">Order from {date}</p>
+            <div className="flex min-w-200 max-w-400 text-lg border-b mt-2">
+                <div className="float-left w-1/4">
+                    Product Name
+                </div>
+                <div className="float-left w-1/4 text-center">
+                    Individual Price
+                </div>
+                <div className="float-left w-1/4 text-center">
+                    Ammount Purchased
+                </div>
+                <div className="float-right text-right w-1/4">
+                    Total Price
+                </div>
+            </div>  
             <ul>
                 {order.OrderItem?.length == 0 ? "0 Items" 
                           : order.OrderItem?.map((item)=>( 
