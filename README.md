@@ -18,12 +18,17 @@ Admin: https://comp3036-2026-b2-c-application-admi.vercel.app/
 Run `pnpm i` from the root of the repository, this will install dependencies and generate the database
 
 Create .env files in apps/admin, apps/web, and packages/db with the following
+
 Web and DB
+
 DATABASE_URL = {link to prisma postgres ORM API key}
+
 JWT_SECRET
 
 ADMIN
+
 JWT_SECRET
+
 PASSWORD
 
 Server can then be started with `turbo dev` in the repository root
