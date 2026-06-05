@@ -2,6 +2,7 @@
 import jwt from "jsonwebtoken";
 import { env } from "@repo/env/web";
 import { cookies } from "next/headers";
+import { deleteCookie } from "cookies-next";
 import { redirect } from "next/navigation";
 
 export async function isLoggedIn() { //TODO: Change Name
@@ -20,9 +21,7 @@ export async function isLoggedIn() { //TODO: Change Name
       return user;
     }
     catch (err){
-      const response = await fetch(`/api/auth`, {
-        method: "DELETE",
-      });
+      return undefined;
       
    }
   //try{token && jwt.verify(token, env.JWT_SECRET || ""); return token && jwt.verify(token, env.JWT_SECRET || "")}
