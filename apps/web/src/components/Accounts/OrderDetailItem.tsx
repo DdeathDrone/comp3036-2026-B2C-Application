@@ -15,7 +15,7 @@ export function OrderDetailItem({orderItem} : {orderItem : OrderItem}){
             <p className="">${orderItem.Product?.price.toFixed(2)}</p>
           </div>
           <div className="w-1/4 float-left text-center">
-            <p>{orderItem.ammount}</p>
+            <p data-test-id="item-ammount">{orderItem.ammount}</p>
           </div>
           <div className="w-1/4 float-right text-right">
             <p className="">${(orderItem.Product?.price ? orderItem.Product.price * orderItem.ammount : 0).toFixed(2)}</p>

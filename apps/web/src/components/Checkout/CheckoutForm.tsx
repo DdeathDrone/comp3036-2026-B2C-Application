@@ -5,9 +5,10 @@ import { useDeleteCookie } from "cookies-next";
 
 function CheckoutComplete({res} : {res : Promise<any>}){
     const deleteCookie = useDeleteCookie();
+    const timeOut = () => {const time = setTimeout(() => redirect("/"),5000)};
     const content = use(res);
     return (<>
-    <p>Transaction Successful</p> {deleteCookie("cart") } {setTimeout(() => redirect("/"),5000)} </> //TODO: FIX THE RANDOM NUMBER
+    <p>Transaction Successful</p> {deleteCookie("cart") } {timeOut()} </> 
 )
 }
 
@@ -34,8 +35,8 @@ export function CheckoutForm({user, totalCost} : {user: number; totalCost: numbe
                         <input className="border ml-10" name="LastName" id="LastName" aria-label="LastName Field" tabIndex={0}></input>
                     </div>
                     <div className="my-1">
-                        <label htmlFor="LastName">Card Number:</label>
-                        <input className="border ml-5" name="LastName" id="LastName" aria-label="LastName Field" tabIndex={0}></input>
+                        <label htmlFor="Card">Card Number:</label>
+                        <input className="border ml-5" name="Card" id="Card" aria-label="Card Number Field" tabIndex={0}></input>
                     </div>
                 </div>
                 {state.error && <p style={{color: 'red'}}>{state.error}</p>}

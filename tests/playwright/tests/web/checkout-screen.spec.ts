@@ -14,11 +14,11 @@ test.describe("CHECKOUT SCREEN", () => {
     async ({page}) => {
         await page.goto("/checkout");
 
-        await expect(page.getByText("Sign In")).toBeVisible();
+        await expect(page.getByText("Log In")).toBeVisible();
         await page.getByLabel("email").fill("user@email.com");
         await page.getByLabel("password").fill("123");
-        await page.getByText("Sign In").click();
-        
+        await page.getByText("Log In").click();
+
         await expect(page.getByText("Cart is empty")).toBeVisible();
 
     }
@@ -40,10 +40,10 @@ test.describe("CHECKOUT SCREEN", () => {
 
         await page.goto("/checkout");
 
-        await expect(page.getByText("Sign In")).toBeVisible();
+        await expect(page.getByText("Log In")).toBeVisible();
         await page.getByLabel("email").fill("user@email.com");
         await page.getByLabel("password").fill("123");
-        await page.getByText("Sign In").click();
+        await page.getByText("Log In").click();
 
         const checkoutItem = await page.getByTestId("blog-post-1");
 
@@ -111,10 +111,10 @@ test.describe("CHECKOUT SCREEN", () => {
 
         await page.goto("/checkout");
 
-        await expect(page.getByText("Sign In")).toBeVisible();
+        await expect(page.getByText("Log In")).toBeVisible();
         await page.getByLabel("email").fill("user@email.com");
         await page.getByLabel("password").fill("123");
-        await page.getByText("Sign In").click();
+        await page.getByText("Log In").click();
 
         const checkoutItem = await page.getByTestId("blog-post-1");
 
@@ -147,10 +147,10 @@ test.describe("CHECKOUT SCREEN", () => {
 
         await page.goto("/checkout");
 
-        await expect(page.getByText("Sign In")).toBeVisible();
+        await expect(page.getByText("Log In")).toBeVisible();
         await page.getByLabel("email").fill("user@email.com");
         await page.getByLabel("password").fill("123");
-        await page.getByText("Sign In").click();
+        await page.getByText("Log In").click();
 
         const checkoutItem = await page.getByTestId("blog-post-1");
 
@@ -178,10 +178,10 @@ test.describe("CHECKOUT SCREEN", () => {
     async ({page}) => {
       await page.goto("/checkout")
 
-      await expect(page.getByText("Sign In")).toBeVisible();
+      await expect(page.getByText("Log In")).toBeVisible();
       await page.getByLabel("email").fill("user@email.com");
       await page.getByLabel("password").fill("123");
-      await page.getByText("Sign In").click();
+      await page.getByText("Log In").click();
 
       await expect(page.getByText("Checkout:")).toBeVisible();
       await expect(page.getByText("Cart is empty")).toBeVisible();
@@ -225,6 +225,23 @@ test.describe("CHECKOUT SCREEN", () => {
       await page.getByText("Pay").click();
 
       await expect(page.getByText("Last Name is required")).not.toBeVisible();
+      await expect(page.getByText("Card Number is required")).toBeVisible();
+
+      await page.getByLabel("Address").fill("1 Example Place");
+      await page.getByLabel("FirstName").fill("Person");
+      await page.getByLabel("LastName").fill("Tester");
+      await page.getByLabel("Card").fill("notnumber");
+      await page.getByText("Pay").click();
+      await expect(page.getByText("Card Number is invalid")).toBeVisible();
+      
+
+      await page.getByLabel("Address").fill("1 Example Place");
+      await page.getByLabel("FirstName").fill("Person");
+      await page.getByLabel("LastName").fill("Tester");
+      await page.getByLabel("Card").fill("1234123412341234");
+      await page.getByText("Pay").click();
+
+
       await expect(page.getByText("Transaction pending")).toBeVisible();
       await expect(page.getByText("Transaction successful")).toBeVisible();
 

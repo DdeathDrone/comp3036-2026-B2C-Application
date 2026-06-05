@@ -22,7 +22,7 @@ export function HistoryListItem({ order }: { order: Order }) {
         <p>{date}</p>
       </div>
       <div className="float-left w-1/4">
-        <p className="">Total Cost: ${order.totalCost.toFixed(2)}</p>
+        <p className="">${order.totalCost.toFixed(2)}</p>
       </div>
       <div className="float-right text-right w-1/4 text-blue-700">
         <Link href={`/profile/${order.userId}/order-details/${order.orderId}`}> View Details</Link>
