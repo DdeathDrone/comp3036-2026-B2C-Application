@@ -1,9 +1,9 @@
 import { seed } from "@repo/db/seed";
 import { expect, test } from "./fixtures";
 
-test.beforeAll(async () => {
-  await seed();
-});
+// test.beforeAll(async () => {
+//   await seed();
+// });
 
 test.describe("ADMIN LIST SCREEN", () => {
   test.beforeAll(async () => {
@@ -290,4 +290,42 @@ test.describe("ADMIN LIST SCREEN", () => {
       ).toBeVisible();
     },
   );
+  test(
+      "Orders Page",
+      {
+        tag: "@a1",
+      },
+      async ({ userPage }) => {
+          await userPage.goto(`/orders`);
+  
+          const item = await userPage.getByTestId("order-list-1");
+  
+          await expect(item.getByText("16/5/2026")).toBeVisible();
+          await expect(item.getByText("2:23 PM")).toBeVisible();
+          await expect(item.getByText("$849.00")).toBeVisible();
+          await expect(item.getByText("View Details")).toBeVisible();
+          await expect(item.getByText("View Details")).toHaveAttribute("href", "/orders/order-details/1");
+  
+          await userPage.goto("orders/order-details/2");
+  
+          const detailsItem = await userPage.getByTestId("order-item-2");
+  
+          await expect(userPage.getByText("Order from 30/5/2026 4:56 PM by user")).toBeVisible();
+          await expect(userPage.getByText("Total Cost: $40.00")).toBeVisible();
+  
+          await expect(detailsItem.getByText("Basketball")).toBeVisible();
+          await expect(detailsItem.getByText("$20.00")).toBeVisible();
+          await expect(detailsItem.getByTestId("item-ammount")).toContainText("2");
+          await expect(detailsItem.getByText("$40.00")).toBeVisible();
+
+          await expect(userPage.getByText("1 Example place")).toBeVisible();
+          await expect(userPage.getByText("First Name: user")).toBeVisible();
+          await expect(userPage.getByText("Surname: user")).toBeVisible();
+  
+  
+  
+  
+  
+  
+      });
 });

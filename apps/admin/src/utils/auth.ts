@@ -19,8 +19,8 @@ export async function isLoggedIn() {
     if(token){
       const user = jwt.verify(token, env.JWT_SECRET || "") as jwt.JwtPayload;
       if(user.role != "admin") return false;
-      return token && jwt.verify(token, env.JWT_SECRET || "")
+      return user
     }
-  } //TODO: MAKE WORK
+  } 
   catch{return false}
 }
