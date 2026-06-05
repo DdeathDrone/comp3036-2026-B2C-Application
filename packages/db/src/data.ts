@@ -108,7 +108,7 @@ export type User = {
   password: string;
   email: string;
   role: string;
-  Order: Order[];
+  Order?: Order[];
 }
 
 export type Order = {
@@ -174,4 +174,13 @@ export const users : User[] = [{
   email: "user@email.com",
   role: "user",
   Order: orders,
+
+  
+},
+{
+  userId: 2,
+  username: "admin",
+  password: "$2b$10$qxMYCEiC1.e5L5Z11CISG.3ANXSGyCDiOUWW1iJQ/s.eN9pYrzrvG",
+  email: "admin@adminuser.com",
+  role: "admin",
 }]
