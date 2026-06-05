@@ -31,13 +31,19 @@
     }
   },
   "dependencies": {
-    "@repo/env": "workspace:*"
+    "@prisma/adapter-pg": "^7.8.0",
+    "@prisma/client": "^6.3.1",
+    "@repo/env": "workspace:*",
+    "dotenv": "^16.4.7",
+    "pg": "^8.21.0"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@repo/ui": "workspace:*",
     "@types/node": "^22.13.1",
+    "@types/pg": "^8.20.0",
+    "prisma": "^6.3.1",
     "vitest": "^3.0.4"
   }
 }

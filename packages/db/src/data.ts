@@ -106,12 +106,72 @@ export type User = {
   username: string;
   userId: number;
   password: string;
-  history: Product[];
+  email: string;
+  role: string;
+  Order: Order[];
 }
 
-export const user1 : User = {
+export type Order = {
+  orderId: number;
+  userId: number;
+  orderDate: Date;
+  totalCost: number;
+  deliveryAddress: string;
+  recipientFirstName: string;
+  recipientSurname: string;
+  OrderItem?: OrderItem[];
+}
+
+export type OrderItem = {
+  productId: number;
+  orderId: number;
+  ammount: number;
+  Product?: Product;
+}
+
+export const orders: Order[] = [
+  {
+  orderId:1,
+  userId:1,
+  orderDate: new Date("May 16, 2026 14:23:00"),
+  totalCost: 849.00,
+  deliveryAddress: "1 Example place",
+  recipientFirstName: "user",
+  recipientSurname: "user",
+  },
+  {
+  orderId:2,
+  userId:1,
+  orderDate: new Date("May 30, 2026 16:56:00"),
+  totalCost: 40,
+  deliveryAddress: "1 Example place",
+  recipientFirstName: "user",
+  recipientSurname: "user",
+  }
+]
+
+export const orderItems: OrderItem[] = [
+  {
+    orderId: 1,
+    productId: 1,
+    ammount: 1,
+  },
+  {
+    orderId: 1,
+    productId: 3,
+    ammount: 1,
+  },
+  {
+    orderId: 2,
+    productId: 2,
+    ammount: 2,
+  }
+]
+export const users : User[] = [{
   userId: 1,
   username: "user",
-  password: "123",
-  history: products,
-}
+  password: "$2b$10$qxMYCEiC1.e5L5Z11CISG.3ANXSGyCDiOUWW1iJQ/s.eN9pYrzrvG",
+  email: "user@email.com",
+  role: "user",
+  Order: orders,
+}]

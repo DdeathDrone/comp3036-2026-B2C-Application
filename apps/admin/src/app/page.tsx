@@ -1,4 +1,4 @@
-//import { client } from "@repo/db/client";
+import { client } from "@repo/db/client";
 import { isLoggedIn } from "../utils/auth";
 import styles from "./page.module.css";
 import { products } from "@repo/db/data";
@@ -19,7 +19,7 @@ export default async function Home() {
       <>
       <h1 className="text-2xl">Admin of B2C Application</h1>
       <main className={styles.main}>
-        <Filters products={products}/>
+        <Filters products={await client.db.product.findMany()}/>
         
         
       </main>

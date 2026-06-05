@@ -23,12 +23,13 @@ export async function POST(req: NextRequest){
     }
         */
     const password = await req.json();
+    //console.log(adminPass);
 
     if(req.headers.get("Content-Type") == "multipart/form-data" ? !await validate(password) : !await validate(password.password)){
         return NextResponse.json({message: 'Password is incorrect'}, {status: 401});
     }
     const sessionToken = jwt.sign(
-        {logged: true, role: "admin"},
+        {logged: true, role: "admin", username: "admin", userid: 0},
         env.JWT_SECRET,
         {expiresIn: '15m'}
     );

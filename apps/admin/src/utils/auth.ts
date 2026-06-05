@@ -15,6 +15,12 @@ export async function isLoggedIn() {
 
   //return token && jwt.verify(token, env.JWT_SECRET || "") 
   
-  try{token && jwt.verify(token, env.JWT_SECRET || ""); return token && jwt.verify(token, env.JWT_SECRET || "")}
+  try{
+    if(token){
+      const user = jwt.verify(token, env.JWT_SECRET || "") as jwt.JwtPayload;
+      if(user.role != "admin") return false;
+      return token && jwt.verify(token, env.JWT_SECRET || "")
+    }
+  } //TODO: MAKE WORK
   catch{return false}
 }

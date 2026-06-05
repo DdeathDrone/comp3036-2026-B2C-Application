@@ -6,11 +6,11 @@ import { PurchaseHistory } from "./PurchaseHistory"
 export function Profile({user} : {user: User}){
 
     return (<div className="pt-10">
-    <div className="text-2xl">
+    <div className="text-2xl pb-5">
         {user.username}
     </div>
     <div>
-        <PurchaseHistory products={user.history}></PurchaseHistory>
+        <PurchaseHistory order={user.Order}></PurchaseHistory>
     </div>
     </div>
     )

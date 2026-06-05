@@ -3,14 +3,16 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+  //output = "../prisma/generated/"
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-model Post {
+model Product {
   id     Int      @id @default(autoincrement())
   urlId  String   @unique
   title  String
@@ -18,18 +20,41 @@ model Post {
   description String
   imageUrl String
   date   DateTime @default(now())
-  category String
-  views  Int      @default(0)
-  likes  Like[]
-  tags String
+  categories String
+  stock Int 
+  price Float 
   active Boolean  @default(true)
+  OrderItem OrderItem[]
   // Incomplete
 }
 
-model Like {
-  postId Int
-  userIP String
-  Post   Post   @relation(fields: [postId], references: [id])
-
-  @@id([postId, userIP])
+model User {
+  userId Int @id @default(autoincrement())
+  password String
+  username String
+  email String @unique
+  role String
+  Order Order[]
 }
+
+model Order {
+  orderId Int @id @default(autoincrement())
+  userId Int 
+  User User @relation(fields: [userId], references: [userId])
+  orderDate DateTime @default(now())
+  totalCost Float
+  deliveryAddress String
+  recipientFirstName String
+  recipientSurname String
+  OrderItem OrderItem[]
+}
+
+model OrderItem {
+  productId Int
+  orderId Int
+  ammount Int
+  Product   Product   @relation(fields: [productId], references: [id])
+  Order Order @relation(fields: [orderId], references: [orderId])
+  @@id([productId, orderId])
+}
+

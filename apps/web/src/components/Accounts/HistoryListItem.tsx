@@ -1,19 +1,32 @@
-import { Product } from "@repo/db/data";
+"use client";
+import { Order, Product } from "@repo/db/data";
+import Link from "next/link";
 
-export function HistoryListItem({ product }: { product: Product }) {
+export function HistoryListItem({ order }: { order: Order }) {
+  const mins = order.orderDate.getMinutes() < 10 ? "0" + order.orderDate.getMinutes()  : order.orderDate.getMinutes();
+  const date = (
+    order.orderDate.getDate() +"/"+ (order.orderDate.getMonth()+1) +"/"+ order.orderDate.getFullYear() + "    " + 
+    (order.orderDate.getHours() > 12 ? order.orderDate.getHours() - 12 + ":" + mins + " PM" 
+    :
+    order.orderDate.getHours() == 0 ? "12" + ":" + mins + " AM" : order.orderDate.getHours() + ":" + mins + " AM"
+    ) 
+  )
   
   return (
-    <article
-      key={product.id}
-      className="pb-5"
-      data-test-id={`blog-post-${product.id}`}
+    <article 
+      key={order.orderId}
+      className="w-400 h-10 border-b border-black"
+      data-test-id={`order-list-${order.orderId}`}
     >
-      <p>{product.title}</p>
-      <p className="">{product.categories}</p>
-      <p>{product.description}</p>
-      <p>Price: ${product.price}</p>
-      {/*<p>#{post.tags.replace(",", " #")}</p>
-      <p>{post.views} views {post.likes.length} likes</p>*/}
+      <div className="float-left w-200">
+        <p>{date}</p>
+      </div>
+      <div className="float-left w-100">
+        <p className="">Total Cost: ${order.totalCost.toFixed(2)}</p>
+      </div>
+      <div className="float-right">
+        <Link href={`/profile/${order.userId}/order-details/${order.orderId}`}> View Details</Link>
+      </div>
     </article>
   );
 }
