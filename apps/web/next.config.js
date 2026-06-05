@@ -16,6 +16,16 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'm.media-amazon.com',
         pathname: '/**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'media.istockphoto.com',
+        pathname: '/**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'store.nintendo.com.au',
+        pathname: '/**'
       }
     ]
   }};

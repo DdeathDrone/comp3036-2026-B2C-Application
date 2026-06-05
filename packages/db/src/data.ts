@@ -42,7 +42,7 @@ export const products: Product[] = [
     description,
     content: content + " ... post1",
     imageUrl:
-      "https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&auto=format&fit=crop&w=3603&q=80",
+      "https://media.istockphoto.com/id/1301030509/photo/electric-toothbrush-dental-and-oral-care-concept.jpg?s=612x612&w=0&k=20&c=6xmWNqpZKznu0owvwrKtv8Q4CZCLq3kUHGNrLCl94Uk=",
     date: new Date("Apr 18, 2022"),
     categories: "Electronics, Health",
     stock: 200,
@@ -59,7 +59,7 @@ export const products: Product[] = [
        iusto corrupti dicta laboris incididunt.`,
     content: content + " ... post2",
     imageUrl:
-      "https://plus.unsplash.com/premium_photo-1661342428515-5ca8cee4385a?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3",
+      "https://media.istockphoto.com/id/1636022764/photo/basketball-ball.jpg?s=612x612&w=0&k=20&c=NVi1V5dCAZKUHdrhnRq-G5t8XSvZE1YXvgw8NxX3N0I=",
     date: new Date("Mar 16, 2020"),
     categories: "Sport",
     stock: 50,
@@ -76,7 +76,7 @@ export const products: Product[] = [
        iusto corrupti dicta laboris incididunt.`,
     content: content + " ... post3",
     imageUrl:
-      "https://plus.unsplash.com/premium_photo-1661517706036-a48d5fc8f2f5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+      "https://store.nintendo.com.au/media/catalog/product/cache/207e23213cf636ccdef205098cf3c8a3/n/i/nintendo_switch_2_2.png",
     date: new Date("Dec 16, 2024"),
     categories: "Electronics, Video Games",
     stock: 300,
