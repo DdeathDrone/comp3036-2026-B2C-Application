@@ -71,7 +71,7 @@ export async function DELETE(req: NextRequest){
     if(!stringid) return NextResponse.json({message: "Bad Request"}, {status:400});
     const productid = parseInt(stringid);
 
-    const result = await client.db.product.delete({where:{id: productid}});
+    const result = await client.db.product.delete({where:{id: productid}}); //TODO: FK key constraints
 
     return NextResponse.json({result}, {status:200});
 

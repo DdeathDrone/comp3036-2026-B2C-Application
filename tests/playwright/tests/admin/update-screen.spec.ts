@@ -292,4 +292,26 @@ test.describe("ADMIN UPDATE SCREEN", () => {
       ).toBeVisible();
     },
   );
+
+  test(
+    "Delete Button",
+    {
+      tag: "@a1",
+    },
+    async ({ userPage }) => {
+      await userPage.goto("/product/clown-costume");
+
+      // UPDATE SCREEN > User can click on the "Save" button that displays an error ui if one of the fields is not specified or valid.
+
+      await expect(userPage.getByText("Delete")).toBeVisible();
+
+      await userPage.getByText("Delete").click();
+
+
+      await expect(userPage.getByText("Clown Costume")).not.toBeVisible();
+
+      
+      
+    },
+  );
 });

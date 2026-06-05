@@ -15,7 +15,6 @@ export async function LeftMenu({selected}: {selected?: string}) {
             <CategoryList selectedTag={selected} products={products} />
           </li>
           
-          <li>Admin</li>
         </ul>
       </nav>
     </div>

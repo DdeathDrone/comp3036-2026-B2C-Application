@@ -14,6 +14,11 @@ test.describe("CHECKOUT SCREEN", () => {
     async ({page}) => {
         await page.goto("/checkout");
 
+        await expect(page.getByText("Sign In")).toBeVisible();
+        await page.getByLabel("email").fill("user@email.com");
+        await page.getByLabel("password").fill("123");
+        await page.getByText("Sign In").click();
+        
         await expect(page.getByText("Cart is empty")).toBeVisible();
 
     }
@@ -34,6 +39,12 @@ test.describe("CHECKOUT SCREEN", () => {
         await expect(page.getByText("Added to Cart!")).toBeVisible();
 
         await page.goto("/checkout");
+
+        await expect(page.getByText("Sign In")).toBeVisible();
+        await page.getByLabel("email").fill("user@email.com");
+        await page.getByLabel("password").fill("123");
+        await page.getByText("Sign In").click();
+
         const checkoutItem = await page.getByTestId("blog-post-1");
 
         await expect(checkoutItem.getByText("Electric Toothbrush")).toBeVisible();
@@ -99,6 +110,12 @@ test.describe("CHECKOUT SCREEN", () => {
         await expect(page.getByText("Added to Cart!")).toBeVisible();
 
         await page.goto("/checkout");
+
+        await expect(page.getByText("Sign In")).toBeVisible();
+        await page.getByLabel("email").fill("user@email.com");
+        await page.getByLabel("password").fill("123");
+        await page.getByText("Sign In").click();
+
         const checkoutItem = await page.getByTestId("blog-post-1");
 
         await expect(checkoutItem.getByText("Electric Toothbrush")).toBeVisible();
@@ -129,6 +146,12 @@ test.describe("CHECKOUT SCREEN", () => {
         await expect(page.getByText("Added to Cart!")).toBeVisible();
 
         await page.goto("/checkout");
+
+        await expect(page.getByText("Sign In")).toBeVisible();
+        await page.getByLabel("email").fill("user@email.com");
+        await page.getByLabel("password").fill("123");
+        await page.getByText("Sign In").click();
+
         const checkoutItem = await page.getByTestId("blog-post-1");
 
         await expect(checkoutItem.getByText("Electric Toothbrush")).toBeVisible();
@@ -143,6 +166,67 @@ test.describe("CHECKOUT SCREEN", () => {
 
 
 
+
+
+    }
+  )
+  test(
+    "Mock Payment Test",
+    {
+      tag: "@a2",
+    },
+    async ({page}) => {
+      await page.goto("/checkout")
+
+      await expect(page.getByText("Sign In")).toBeVisible();
+      await page.getByLabel("email").fill("user@email.com");
+      await page.getByLabel("password").fill("123");
+      await page.getByText("Sign In").click();
+
+      await expect(page.getByText("Checkout:")).toBeVisible();
+      await expect(page.getByText("Cart is empty")).toBeVisible();
+
+      await page.goto("/");
+
+      const item = await page.getByTestId("blog-post-1");
+      await expect(item).toBeVisible();
+
+      await expect(item.getByText("Add to Cart")).toBeVisible();
+      await item.getByText("Add to Cart").click();
+      await expect(page.getByText("Added to Cart!")).toBeVisible();
+
+      await page.goto("/checkout")
+
+      await expect(page.getByTestId("blog-post-1")).toBeVisible();
+
+      await expect(page.getByLabel("Address")).toBeVisible();
+      await expect(page.getByLabel("FirstName")).toBeVisible();
+      await expect(page.getByLabel("LastName")).toBeVisible();
+      await expect(page.getByText("Pay")).toBeVisible();
+      await page.getByText("Pay").click();
+      await expect(page.getByText("Address is required")).toBeVisible();
+
+      await page.getByLabel("Address").fill("1 Example Place");
+
+      await page.getByText("Pay").click();
+      await expect(page.getByText("Address is required")).not.toBeVisible();
+      await expect(page.getByText("First Name is required")).toBeVisible();
+
+      await page.getByLabel("Address").fill("1 Example Place");
+      await page.getByLabel("FirstName").fill("Person");
+      await page.getByText("Pay").click();
+
+      await expect(page.getByText("First Name is required")).not.toBeVisible();
+      await expect(page.getByText("Last Name is required")).toBeVisible();
+
+      await page.getByLabel("Address").fill("1 Example Place");
+      await page.getByLabel("FirstName").fill("Person");
+      await page.getByLabel("LastName").fill("Tester");
+      await page.getByText("Pay").click();
+
+      await expect(page.getByText("Last Name is required")).not.toBeVisible();
+      await expect(page.getByText("Transaction pending")).toBeVisible();
+      await expect(page.getByText("Transaction successful")).toBeVisible();
 
 
     }
