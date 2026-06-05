@@ -12,7 +12,7 @@ export function TopBar(){
                             
                         </div>
                         <div className="float-right border bg-blue-100 hover:bg-blue-300 p-1 rounded-lg">
-                            <Link href="/">Orders</Link>
+                            <Link href="/orders">Orders</Link>
                         </div>
                     </div>
                 </div>

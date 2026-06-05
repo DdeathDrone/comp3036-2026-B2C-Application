@@ -120,6 +120,7 @@ export type Order = {
   recipientFirstName: string;
   recipientSurname: string;
   OrderItem?: OrderItem[];
+  User?: User;
 }
 
 export type OrderItem = {
