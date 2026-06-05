@@ -29,20 +29,23 @@ export async function TopMenu({ query }: { query?: string }) {
 
       <Search query={query}/>
       {/* <div className="float-right"> */}
-      <div className="float-right mt-1 border rounded-md p-2 w-25 text-center mr-10 text-black text-lg bg-blue-100 hover:bg-blue-300" >
-          <Link href={"/checkout"}>Checkout</Link>
+      <div  className="float-right mt-1 border rounded-md p-2 w-35 text-center mr-10 text-black text-lg bg-blue-100 hover:bg-blue-300">
+        <Link href={"/checkout"}>Checkout</Link>
+        <div className="text-base">
+          <CartPopup/>
         </div>
+
+      </div>
         
-        <div className=" ">
-          {userCookies == undefined ?  <div className="float-right mt-1 mr-10 p-2 border w-25 text-center rounded-md text-lg text-black bg-blue-100 hover:bg-blue-300"><LoginButton /> </div> 
-          : <><div className="float-right mt-1 mr-10 p-2 border w-25 text-center rounded-md text-lg text-black bg-red-400 hover:bg-red-600 "> <LogOutButton/></div>
-          <div className="float-right mt-1 mr-10 p-2 border w-25 text-center rounded-md text-lg text-black bg-blue-100 hover:bg-blue-300"><ProfileButton/> </div> </>}
-        </div>
-        <div className="float-right mr-10 mt-1 border rounded-md p-2 w-40 text-center mr-10 text-lg bg-blue-100 hover:bg-blue-300"  >
-          <ThemeSwitch />
-        </div>
+      <div className=" ">
+        {userCookies == undefined ?  <div className="float-right mt-1 mr-10 p-2 border w-25 text-center rounded-md text-lg text-black bg-blue-100 hover:bg-blue-300"><LoginButton /> </div> 
+        : <><div className="float-right mt-1 mr-10 p-2 border w-25 text-center rounded-md text-lg text-black bg-red-400 hover:bg-red-600 "> <LogOutButton/></div>
+        <div className="float-right mt-1 mr-10 p-2 border w-25 text-center rounded-md text-lg text-black bg-blue-100 hover:bg-blue-300"><ProfileButton/> </div> </>}
+      </div>
+      <div className="float-right mr-10 mt-1 border rounded-md p-2 w-40 text-center mr-10 text-lg bg-blue-100 hover:bg-blue-300"  >
+        <ThemeSwitch />
+      </div>
         
-        <div><CartPopup></CartPopup></div>
         
 
       {/* </div> */}

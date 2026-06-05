@@ -12,7 +12,7 @@ export function CartPopup(){
     }, [context?.isOpen]
     );
 
-    return context?.isOpen ? <div className="mt-10 text-xl">Added to Cart!</div> : null; //TODO: Make Pretty
+    return context?.isOpen ? <div className="text-center">Added to Cart!</div> : null; //TODO: Make Pretty
 
 
 }
