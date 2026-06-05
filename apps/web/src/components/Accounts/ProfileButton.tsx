@@ -11,7 +11,7 @@ export async function ProfileButton(){
     const token = cookie.get("auth_token");
 
     const user = await isLoggedIn();
-    if(user?.role == "admin") return <Link className="pl-5 pr-5"href={`https://comp3036-2026-assignment-3-admin.vercel.app/`}>{user?.username}</Link>
+    if(user?.role == "admin") return <Link className="pl-5 pr-5"href={`https://comp3036-2026-b2-c-application-admi.vercel.app/`}>{user?.username}</Link>
     return <Link className="pl-5 pr-5"href={`/profile/${user?.userid}`}>{user?.username}</Link>
     
 }
