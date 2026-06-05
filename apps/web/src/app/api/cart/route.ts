@@ -16,7 +16,7 @@ export async function PUT(req: NextRequest){ //TODO: Secure API
     else{
         const currentCart = JSON.parse(decodeURIComponent(cookieStore.get("cart")?.value as string));
         //const newjson = {cart: [{id: 1, ammount: 2}, {id:2, ammount: 1}]}
-        const item = currentCart["cart"].find(({id}) => id == request.id);
+        const item = currentCart["cart"].find(({id} : {id: number}) => id == request.id);
         if(item) {
             item.ammount += 1;
         }
@@ -52,7 +52,7 @@ export async function GET(req: NextRequest){
     var result = []
     for(var i = 0; i < products.length; i++){
         //console.log(message.find(({id}) => id == 1));
-        result.push({product: products[i], ammount: message.find(({id}) => id == products[i].id).ammount});
+        result.push({product: products[i], ammount: message.find(({id} : {id: number}) => id == products[i]?.id).ammount});
     }
     const res = NextResponse.json({message: result, status: 200});
     return res;
@@ -70,7 +70,7 @@ export async function DELETE(req : NextRequest){
         return res;
     }
     const parsed = JSON.parse(decodeURIComponent(cart.value));
-    const result = {cart:  parsed.cart.filter(({id}) => id != request.id)};
+    const result = {cart:  parsed.cart.filter(({id} : {id: number}) => id != request.id)};
     console.log(result);
 
 
@@ -92,7 +92,7 @@ export async function PATCH(req : NextRequest){
     }
     const parsed = JSON.parse(decodeURIComponent(cart.value));
 
-    parsed.cart.find(({id}) => id == request.id).ammount = request.ammount;
+    parsed.cart.find(({id} : {id: number}) => id == request.id).ammount = request.ammount;
 
     const res = NextResponse.json({message: parsed}, {status: 200});
     res.cookies.set("cart", encodeURIComponent(JSON.stringify(parsed)));
@@ -122,8 +122,9 @@ export async function POST(req: NextRequest){
 
     for(var i = 0; i < products.length; i++){
         //console.log(message.find(({id}) => id == 1));
-        itemData.push({productId: products[i].id, ammount: message.find(({id}) => id == products[i].id).ammount});
+        itemData.push({productId: products[i]?.id as number, ammount: message.find(({id} : {id: number}) => id == products[i]?.id as number).ammount});
     }
+
 
 
     
