@@ -39,21 +39,22 @@ export function ProductForm({product} : {product? : Product}){
         }
     }
     return (
-        <form className="inline-block p-2" action={formAction}>
-            <div>
+        <div className="flex place-content-center mt-10">
+        <form className="inline-block p-4 border rounded-md" action={formAction}>
+            <div className="grid">
                 <label htmlFor="Title">Title</label>
-                <input className="border-1 mb-5 ml-5 field-sizing-content pl-2 pr-2" aria-label="Title Input" type="text" name="Title" id="Title" value={productData.title ? productData.title : ""} onChange={handleChange}></input>
+                <input className="border-1 field-sizing-content pl-2 pr-2" aria-label="Title Input" type="text" name="Title" id="Title" value={productData.title ? productData.title : ""} onChange={handleChange}></input>
             </div>
 
-            <div>
+            <div className="grid">
                 <label htmlFor="Description">Description</label>
                 <div></div>
-                <textarea className="border-1 ml-5 field-sizing-content scroll-auto pl-2 pr-2 max-h-50 max-w-200 text-wrap " aria-label="Description Input" name="Description" id="Description" value={productData.desc ? productData.desc : ""} onChange={handleChange}></textarea>
+                <textarea className="border-1 field-sizing-content scroll-auto pl-2 pr-2 max-h-50 max-w-200 text-wrap " aria-label="Description Input" name="Description" id="Description" value={productData.desc ? productData.desc : ""} onChange={handleChange}></textarea>
                 
             
             </div>
             <div>
-                <button className="bg-black text-white rounded-2xl py-1 px-2" aria-label="Preview Button" id="Preview" formAction={async (formData : FormData) => {
+                <button className="bg-blue-200 hover:bg-blue-400 border rounded-lg py-1 px-2 my-5" aria-label="Preview Button" id="Preview" formAction={async (formData : FormData) => {
                      setPreview({state: !preview.state, 
                         contentParsed: preview.state ? preview.contentParsed : await marked.parse(formData.get("Content") as string)  })
                         //console.log(inputRef.current);
@@ -70,42 +71,42 @@ export function ProductForm({product} : {product? : Product}){
 
             </div>
             { preview.state ? 
-            <div>
+            <div className="grid">
                 <label className=""htmlFor="previewContent">Content Preview</label>
-                <p aria-label="Content Preview" dangerouslySetInnerHTML={{ __html: preview.contentParsed}}className="border-1 scroll-auto ml-5 text-balance rows=2 h-50 w-200 pl-2 pr-2"  id="previewContent" data-test-id="content-preview" ></p>
+                <p aria-label="Content Preview" dangerouslySetInnerHTML={{ __html: preview.contentParsed}}className="border-1 scroll-auto text-balance rows=2 h-50 w-200 pl-2 pr-2"  id="previewContent" data-test-id="content-preview" ></p>
             </div>
             :<></>}
-            <div>
+            <div className="grid">
                 
                 <label className=""htmlFor="Content">Content</label>
                 <div></div>
-                <textarea ref={inputRef} className="border-1 scroll-auto ml-5 text-balance h-50 w-200 pl-2 pr-2 resize-none" aria-label="Content Input" name="Content" id="Content"  value={productData.content ? productData.content : ""} onChange={handleChange}></textarea>
+                <textarea ref={inputRef} className="border-1 scroll-auto text-balance h-50 w-200 pl-2 pr-2 resize-none" aria-label="Content Input" name="Content" id="Content"  value={productData.content ? productData.content : ""} onChange={handleChange}></textarea>
             </div>
 
-            <div>
+            <div className="grid my-5">
                 <label htmlFor="Categories">Categories</label>
-                <input className="border-1 mb-5 ml-5 field-sizing-content pl-2 pr-2" aria-label="Categories Input" type="text" name="Categories" id="Categories" value={productData.categories ? productData.categories : ""} onChange={handleChange} ></input>
+                <input className="border-1  field-sizing-content pl-2 pr-2" aria-label="Categories Input" type="text" name="Categories" id="Categories" value={productData.categories ? productData.categories : ""} onChange={handleChange} ></input>
             </div>
-            <div>
+            <div className="grid">
                 <label htmlFor="Stock">Stock</label>
-                <input className="border-1 mb-5 ml-5 field-sizing-content pl-2 pr-2" aria-label="Stock Input" type="number" name="Stock" id="Stock" value={productData.stock ? productData.stock : ""} onChange={handleChange} ></input>
+                <input className="border-1 field-sizing-content pl-2 pr-2" aria-label="Stock Input" type="number" name="Stock" id="Stock" value={productData.stock ? productData.stock : ""} onChange={handleChange} ></input>
             </div>
-            <div>
+            <div className="grid my-5">
                 <label htmlFor="Price">Price</label>
-                <input className="border-1 mb-5 ml-5 field-sizing-content pl-2 pr-2" aria-label="Price Input" type="number" name="Price" id="Price" value={productData.price ? productData.price : ""} onChange={handleChange} ></input>
+                <input className="border-1 field-sizing-content pl-2 pr-2" aria-label="Price Input" type="number" name="Price" id="Price" value={productData.price ? productData.price : ""} onChange={handleChange} ></input>
             </div>
-            <div>
+            <div className="grid mb-5">
                 <label htmlFor="ImageUrl">Image URL</label>
-                <input className="border-1 mb-5 ml-5 field-sizing-content pl-2 pr-2" aria-label="Image URL Input" type="text" name="ImageUrl" id="ImageUrl" value={productData.img ? productData.img : ""} onChange={handleChange} ></input>
+                <input className="border-1 mb-5 field-sizing-content pl-2 pr-2" aria-label="Image URL Input" type="text" name="ImageUrl" id="ImageUrl" value={productData.img ? productData.img : ""} onChange={handleChange} ></input>
                 <div>
                     <img data-test-id="image-preview" src={productData.img == "" ? undefined : productData.img} width={300} height={300} alt="Image not found"></img>
                 </div>
             </div>
             {state.error && <p className="text-red-500">{state.error}</p>}
             <div>
-            <button className="bg-black text-white rounded-2xl py-1 px-2 mb-20 mt-3">Save</button>
+            <button className="bg-blue-300 hover:bg-blue-400 border rounded-lg py-1 px-2 mb-20 mt-3">Save</button>
             {!product ? null :
-            <button type="button" className="bg-red-500 float-right text-white rounded-2xl py-1 px-2 mb-20 mt-3" onClick={async () => { //TODO: Make confirmation popup
+            <button type="button" className="bg-red-400 hover:bg-red-500 float-right border rounded-lg py-1 px-2 mb-20 mt-3" onClick={async () => { //TODO: Make confirmation popup
                 const res = await fetch(`/api/products?id=${product.id}`, {
                     method: "DELETE",
                 })
@@ -117,5 +118,6 @@ export function ProductForm({product} : {product? : Product}){
             {state.error && <p className="text-red-500">Please fix the errors before saving</p>}
             
         </form>
+        </div>
     )
 }

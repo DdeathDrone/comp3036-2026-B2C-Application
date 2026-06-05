@@ -3,6 +3,7 @@
 import { Product } from "@repo/db/data"
 import { useEffect, useReducer, useState } from "react"
 import { AdminList } from "./AdminList";
+import { LogOutButton } from "./LogOutButton";
 
 type Any = any;
 
@@ -92,7 +93,7 @@ export function Filters({products} : {products : Product[]}){
     });*/
 
     return (<>
-        <form className="flex flex-row mt-1">
+        <form className="flex place-content-center flex-row pb-2">
 
           <label htmlFor="Sort">Sort By:</label>
           <select className="border ml-2 mr-2" name="Sort" id="Sort" defaultValue="date-desc" onChange={(e) => dispatch({type: "SORT", event: e})}>
@@ -123,6 +124,17 @@ export function Filters({products} : {products : Product[]}){
             </li>
           ))}
         </ul>
+        <div className="flex place-content-center mt-20">
+          <div className="block w-300">
+            <div className="float-left">
+              <LogOutButton/>
+            </div>
+            <div className="float-right">
+              <a className="border p-1 bg-blue-100 hover:bg-blue-300 rounded-md mb-2" href="/products/create">Create Product</a>
+              </div>
+
+          </div>
+        </div>
         </>
     )
 }

@@ -15,5 +15,5 @@ export function SummaryItem({
   // TODO: Implement the summary item
   // must show the number of posts in that category and the name
   // if if is selected it must show in different color/background
-  return <> <Link title={title} className={isSelected ? "selected" : ""} href={link}> <p data-test-id="post-count">{name} - {count}</p></Link></>;
+  return <div className="my-2" > <Link title={title} className={isSelected ? "bg-green-400 border px-2 rounded-md" : "bg-green-200 hover:bg-green-300 border px-2 rounded-md"} href={link}  > {name} - {count} </Link></div>;
 }

@@ -22,7 +22,7 @@ export async function POST(req: NextRequest){
     const sessionToken = jwt.sign(
         {logged: true, role: password.role, username: password.username, userid: password.userId},
         env.JWT_SECRET,
-        {expiresIn: '15m'}
+        {expiresIn: '30m'}
     );
     
     //const refreshToken = `rf_${Math.random().toString(36).slice(2)}`;

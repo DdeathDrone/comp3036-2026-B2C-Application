@@ -5,6 +5,7 @@ import { products } from "@repo/db/data";
 import { LoginPage } from "../components/LoginPage";
 import { LogOutButton } from "../components/LogOutButton";
 import { Filters } from "../components/Filters";
+import { TopBar } from "../components/TopBar";
 export default async function Home() {
   // use the is logged in function to check if user is authorised
   // we will use the cookie based approach
@@ -13,17 +14,16 @@ export default async function Home() {
   
 
   if (!loggedIn) {
-    return <><main>Sign in to your account</main> <LoginPage></LoginPage></>;
+    return <><LoginPage></LoginPage></>;
   } else {
     return (
       <>
-      <h1 className="text-2xl">Admin of B2C Application</h1>
-      <main className={styles.main}>
+      <TopBar></TopBar>
+      <main className="mt-5">
         <Filters products={await client.db.product.findMany()}/>
         
         
       </main>
-      <LogOutButton/> <a className="border px-1 rounded-md mb-2" href="/products/create">Create Product</a>
       </>
     );
   }

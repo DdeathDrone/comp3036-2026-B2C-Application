@@ -15,16 +15,16 @@ export function HistoryListItem({ order }: { order: Order }) {
   return (
     <article 
       key={order.orderId}
-      className="w-400 h-10 border-b border-black"
+      className="min-w-200 max-w-400 h-10 mt-3 border-b"
       data-test-id={`order-list-${order.orderId}`}
     >
-      <div className="float-left w-200">
+      <div className="float-left w-2/4">
         <p>{date}</p>
       </div>
-      <div className="float-left w-100">
-        <p className="">Total Cost: ${order.totalCost.toFixed(2)}</p>
+      <div className="float-left w-1/4">
+        <p className="">${order.totalCost.toFixed(2)}</p>
       </div>
-      <div className="float-right">
+      <div className="float-right text-right w-1/4 text-blue-700">
         <Link href={`/profile/${order.userId}/order-details/${order.orderId}`}> View Details</Link>
       </div>
     </article>

@@ -5,7 +5,7 @@ async function login(page: Page){
     await page.goto(`/login`)
     await page.getByLabel("email").fill("user@email.com");
     await page.getByLabel("password").fill("123");
-    await page.getByText("Sign In").click(); 
+    await page.getByText("Log In").click(); 
 }
 test.describe("ACCOUNT SCREEN", () => {
   test.beforeAll(async () => {
@@ -22,13 +22,13 @@ test.describe("ACCOUNT SCREEN", () => {
 
         await expect(page.getByLabel("email")).toBeVisible();
         await expect(page.getByLabel("password")).toBeVisible();
-        await expect(page.getByText("Sign In")).toBeVisible();
+        await expect(page.getByText("Log In")).toBeVisible();
         await expect(page.getByText("Sign Up")).toBeVisible();
         await expect(page.getByText("Sign Up")).toHaveAttribute("href", "/signup");
 
         await page.getByLabel("email").fill("user@email.com");
         await page.getByLabel("password").fill("123");
-        await page.getByText("Sign In").click();
+        await page.getByText("Log In").click();
         await expect(page.getByTestId("blog-post-1")).toBeVisible();
     });
     test(
@@ -51,21 +51,21 @@ test.describe("ACCOUNT SCREEN", () => {
 
         await expect(item.getByText("16/5/2026")).toBeVisible();
         await expect(item.getByText("2:23 PM")).toBeVisible();
-        await expect(item.getByText("Total Cost: $849.00")).toBeVisible();
+        await expect(item.getByText("$849.00")).toBeVisible();
         await expect(item.getByText("View Details")).toBeVisible();
         await expect(item.getByText("View Details")).toHaveAttribute("href", "/profile/1/order-details/1");
 
-        await page.goto("profile/1/order-details/1");
+        await page.goto("profile/1/order-details/2");
 
-        const detailsItem = await page.getByTestId("order-item-1");
+        const detailsItem = await page.getByTestId("order-item-2");
 
-        await expect(page.getByText("Order from 16/5/2026 2:23 PM")).toBeVisible();
-        await expect(page.getByText("Total Cost: $849.00")).toBeVisible();
+        await expect(page.getByText("Order from 30/5/2026 4:56 PM")).toBeVisible();
+        await expect(page.getByText("Total Cost: $40.00")).toBeVisible();
 
-        await expect(detailsItem.getByText("Electric Toothbrush")).toBeVisible();
-        await expect(detailsItem.getByText("Item Price: $99.99")).toBeVisible();
-        await expect(detailsItem.getByText("Ammount Purchased: 1")).toBeVisible();
-        await expect(detailsItem.getByText("Total Price: $99.99")).toBeVisible();
+        await expect(detailsItem.getByText("Basketball")).toBeVisible();
+        await expect(detailsItem.getByText("$20.00")).toBeVisible();
+        await expect(detailsItem.getByTestId("item-ammount")).toContainText("2");
+        await expect(detailsItem.getByText("$40.00")).toBeVisible();
 
 
 

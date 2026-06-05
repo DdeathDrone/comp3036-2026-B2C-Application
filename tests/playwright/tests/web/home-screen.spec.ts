@@ -17,9 +17,9 @@ test.describe("HOME SCREEN", () => {
     await expect(linkItem).toHaveAttribute("href", link);
 
     if (count) {
-      const item = linkItem.getByTestId("post-count");
-      await expect(item).toBeVisible();
-      await expect(item).toContainText(count.toString());
+      //const item = linkItem.getByTestId("post-count");
+      //await expect(item).toBeVisible();
+      await expect(linkItem).toContainText(count.toString());
     }
   }
 

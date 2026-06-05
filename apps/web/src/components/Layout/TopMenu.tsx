@@ -9,6 +9,7 @@ import { Search } from "./Search";
 import { cookies } from "next/headers";
 import { ProfileButton } from "../Accounts/ProfileButton";
 import { CartPopup } from "../Checkout/CartPopup";
+import { isLoggedIn } from "../../../utils/auth";
 
 function debounce<T extends (...args: Any[]) => Any>(fn: T, delay = 300) {
   let timeoutId: Any;
@@ -19,19 +20,35 @@ function debounce<T extends (...args: Any[]) => Any>(fn: T, delay = 300) {
 }
 
 export async function TopMenu({ query }: { query?: string }) {
-  const userCookies = await cookies();
+  const userCookies = await isLoggedIn(); //bg-[#52B1FF]
   return (
-    <div className="fixed pl-30 inset-x-0 top-0 grid flex-1 grid-cols-4 bg-gray-400 h-10">
-      <Search query={query}/>
-      <div className="">
-        <ThemeSwitch />
-
-        {userCookies.get("auth_token") == undefined ?  <LoginButton /> : <><ProfileButton/> <LogOutButton/></>}
-        <Link href={"/checkout"}>Checkout</Link>
-        <div><CartPopup></CartPopup></div>
+    
+    <div className="fixed block border-b-2 bg-blue-300 inset-x-0 top-0 h-15"> 
         
+      <Link className="float-left mt-3 mr-3 ml-2 text-black text-2xl"href="/">B2C Store</Link>
+
+      <Search query={query}/>
+      {/* <div className="float-right"> */}
+      <div  className="float-right mt-1 border rounded-md p-2 w-35 text-center mr-10 text-black text-lg bg-blue-100 hover:bg-blue-300">
+        <Link href={"/checkout"}>Checkout</Link>
+        <div className="text-base">
+          <CartPopup/>
+        </div>
 
       </div>
+        
+      <div className=" ">
+        {userCookies == undefined ?  <div className="float-right mt-1 mr-10 p-2 border w-25 text-center rounded-md text-lg text-black bg-blue-100 hover:bg-blue-300"><LoginButton /> </div> 
+        : <><div className="float-right mt-1 mr-10 p-2 border w-25 text-center rounded-md text-lg text-black bg-red-400 hover:bg-red-600 "> <LogOutButton/></div>
+        <div className="float-right mt-1 mr-10 p-2 border w-25 text-center rounded-md text-lg text-black bg-blue-100 hover:bg-blue-300"><ProfileButton/> </div> </>}
+      </div>
+      <div className="float-right mr-10 mt-1 border rounded-md p-2 w-40 text-center mr-10 text-lg bg-blue-100 hover:bg-blue-300"  >
+        <ThemeSwitch />
+      </div>
+        
+        
+
+      {/* </div> */}
     </div>
   );
 }
