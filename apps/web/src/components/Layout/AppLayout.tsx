@@ -16,10 +16,12 @@ export async function AppLayout({
     <CartPopupProvider>
       <TopMenu query={query} />
       <LeftMenu selected={selected}/>
+      <div className="mt-5 ml-10">
       <Content>
         
         {children}
       </Content>
+      </div>
     </CartPopupProvider>
     </ThemeProvider>
     </div>

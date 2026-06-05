@@ -17,6 +17,7 @@
 
 html[data-theme="dark"] {
   --background: theme("colors.gray.900");
+  --border: theme("colors.white");
   --foreground: #ededed;
   --text: theme("colors.gray.50");
   --textHover: theme("colors.gray.300");
@@ -38,6 +39,7 @@ html {
   --color-wsu: var(--wsu);
   --color-wsu-light: var(--wsu-light);
 }
+
 .selected{
-  color:red;
+  background: #ff0000;
 }
